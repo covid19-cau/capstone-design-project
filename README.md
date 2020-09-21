@@ -1,3 +1,4 @@
 # capstone-design-project
 
-covid 19
+**Project:** my home gym
+**Team :** covid 19
