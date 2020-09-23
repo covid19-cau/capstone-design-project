@@ -1,0 +1,43 @@
+spring:
+  profiles:
+    active: local # 기본적으로 local이 선택된다는 뜻
+  datasource:
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:oracle:thin:@localhost:3306:xe
+    username: root
+    password: 
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/ 
+      suffix: .jsp
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: GMAIL 아이디
+    password: "GMAIL 패스워드"
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+---
+
+spring:
+  profiles: local
+server:
+  port: 8071
+
+---
+
+# 운영환경만의 설정
+spring:
+  profiles: production
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/sbs_exam_1?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: 
+server:
+  port: 8072
