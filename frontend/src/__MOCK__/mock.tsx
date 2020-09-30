@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Tag, Space } from "antd";
+import { Tag, Badge, Space } from "antd";
 
 export const columns = [
   {
@@ -72,4 +72,52 @@ export const data = [
     address: "Sidney No. 1 Lake Park",
     tags: ["cool", "teacher"],
   },
+];
+
+export const userExpandColumns = [
+  { title: "Date", dataIndex: "date", key: "date" },
+  { title: "Name", dataIndex: "name", key: "name" },
+  {
+    title: "Status",
+    key: "state",
+    render: () => (
+      <span>
+        <Badge status="success" />
+        Finished
+      </span>
+    ),
+  },
+  {
+    title: "Action",
+    dataIndex: "operation",
+    key: "operation",
+    render: () => (
+      <Space size="middle">
+        <a>Pause</a>
+        <a>Stop</a>
+      </Space>
+    ),
+  },
+];
+
+export const userExpandData = [
+  {
+    key: 0,
+    date: "2014-12-24 23:12:00",
+    name: "This is production name",
+  },
+];
+
+export const userData = [
+  {
+    key: 0,
+    name: `User`,
+    createdAt: "2014-12-24 23:12:00",
+  },
+];
+
+export const userColumns = [
+  { title: "Name", dataIndex: "name", key: "name" },
+  { title: "Create date", dataIndex: "createdAt", key: "createdAt" },
+  { title: "Action", key: "operation", render: () => <a>Do something</a> },
 ];
