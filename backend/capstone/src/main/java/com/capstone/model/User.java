@@ -18,5 +18,5 @@ public class User {
 	private String passwd;
 	//diet =1 , muscle =2; body =3
 	private int subject;
-
+	private String challenge;
 }

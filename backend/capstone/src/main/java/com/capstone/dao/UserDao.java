@@ -25,8 +25,4 @@ public class UserDao {
 	public boolean deleteUser(String ID) {
 		return false;
 	}
-	
-	public boolean saveUser(User user) {
-		return false;
-	}
 }

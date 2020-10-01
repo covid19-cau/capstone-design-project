@@ -1,21 +1,20 @@
 package com.capstone.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 @Entity
+@AllArgsConstructor
+@Data
 public class Equipment {
 
-	@Builder
-	public Equipment() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	private int index;
-	
+	@Id
 	private String title;
 	
 	private String contents;
 
+	private int subject;
 }

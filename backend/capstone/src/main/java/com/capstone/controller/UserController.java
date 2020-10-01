@@ -26,7 +26,7 @@ public class UserController {
 	private UserDao userDao; 
 	
 	
-	@GetMapping("/user/{id}")
+	@GetMapping("admin/user/{id}")
 	@ResponseBody
 	public User findUserData(@RequestParam String id) {
 		User one = userDao.findByID(id);
@@ -37,21 +37,13 @@ public class UserController {
 		return one;
 	} 
 	
-	@GetMapping("/user")
+	@GetMapping("admin/user")
 	public List<User> retrieveAllUser(){
 		return userDao.findAllUser();
 	}
+
 	
-	@PostMapping("/user/add")
-	public ResponseEntity<User> addUserData(@RequestBody User user) {
-		userDao.saveUser(user);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(user.getId()).toUri();
-		return ResponseEntity.created(location).build();
-	
-	}
-	
-	@DeleteMapping("/user/delete/{id}")
+	@DeleteMapping("admin/user/delete/{id}")
 	public void deleteUserData(@RequestParam String id) {
 		userDao.deleteUser(id);
 	}
