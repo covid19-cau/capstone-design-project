@@ -9,14 +9,15 @@ import lombok.Data;
 @Entity
 @AllArgsConstructor
 @Data
-public class User {
+public class Meal {
+	
+	
+	
 	
 	@Id
-	private int index;
-	private String id;
-	private String email;
-	private String passwd;
-	//diet =1 , muscle =2; body =3
+	private String title;
+	
+	private String contents;
+	
 	private int subject;
-	private String challenge;
 }
