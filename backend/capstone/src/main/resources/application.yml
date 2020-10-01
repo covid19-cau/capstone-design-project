@@ -2,25 +2,10 @@ spring:
   profiles:
     active: local # 기본적으로 local이 선택된다는 뜻
   datasource:
-    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    url: jdbc:oracle:thin:@localhost:3306:xe
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/capstone?serverTimezone=Asia/Seoul&useSSL=false
     username: root
     password: 
-  mvc:
-    view:
-      prefix: /WEB-INF/jsp/ 
-      suffix: .jsp
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: GMAIL 아이디
-    password: "GMAIL 패스워드"
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
 
 ---
 
@@ -31,6 +16,8 @@ server:
 
 ---
 
+debug: false
+
 # 운영환경만의 설정
 spring:
   profiles: production
@@ -40,4 +27,4 @@ spring:
     username: root
     password: 
 server:
-  port: 8072
+  port: 8081

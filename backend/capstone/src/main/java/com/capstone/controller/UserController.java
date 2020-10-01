@@ -1,38 +1,51 @@
 package com.capstone.controller;
 
-import java.util.Optional;
+import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.capstone.dao.UserDao;
 import com.capstone.model.User;
-import com.capstone.repository.UsersRepository;
+import com.sun.jndi.toolkit.url.Uri;
 
-@Controller
+@RestController
 public class UserController {
 
 	@Autowired
-	UsersRepository userRepo;
+	private UserDao userDao; 
 	
 	
-	@GetMapping("/main/find")
+	@GetMapping("admin/user/{id}")
 	@ResponseBody
-	public Optional<User> findData() {
+	public User findUserData(@RequestParam String id) {
+		User one = userDao.findByID(id);
+		if(one == null) {
+			throw new UserNotFoundException(String.format("ID[%s] not found", id));
+		}
 		
-		
-		return userRepo.findById("");
-		
+		return one;
+	} 
+	
+	@GetMapping("admin/user")
+	public List<User> retrieveAllUser(){
+		return userDao.findAllUser();
 	}
+
 	
-	@GetMapping("/user/add")
-	@ResponseBody
-	public void addUserData() {
-		User user1 = new User();
-		user1.setEmail(null);
-		user1.setId(null);
-		userRepo.save(user1);
+	@DeleteMapping("admin/user/delete/{id}")
+	public void deleteUserData(@RequestParam String id) {
+		userDao.deleteUser(id);
 	}
 
 }
