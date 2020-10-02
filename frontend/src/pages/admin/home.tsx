@@ -61,7 +61,7 @@ const Home = () => {
               <UserManageTable columns={userColumns} data={userData} />
             ) : (
               <RecommendManageTable
-                data={data}
+                data={data.filter((data) => data.category === selectedKey)}
                 columns={columns}
                 title={selectedKey}
               />

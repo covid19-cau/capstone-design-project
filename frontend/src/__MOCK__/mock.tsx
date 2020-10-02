@@ -3,25 +3,20 @@ import { Tag, Badge, Space } from "antd";
 
 export const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
+    title: "Title",
+    dataIndex: "title",
+    key: "title",
     render: (text: any) => <a>{text}</a>,
   },
   {
-    title: "Age",
-    dataIndex: "age",
-    key: "age",
+    title: "Content",
+    dataIndex: "content",
+    key: "content",
   },
   {
-    title: "Address",
-    dataIndex: "address",
-    key: "address",
-  },
-  {
-    title: "Tags",
-    key: "tags",
-    dataIndex: "tags",
+    title: "Subject",
+    key: "subject",
+    dataIndex: "subject",
     render: (tags: any) => (
       <>
         {tags.map((tag: any) => {
@@ -43,7 +38,7 @@ export const columns = [
     key: "action",
     render: (text: any, record: any) => (
       <Space size="middle">
-        <a>Invite {record.name}</a>
+        <a>Update</a>
         <a>Delete</a>
       </Space>
     ),
@@ -53,49 +48,49 @@ export const columns = [
 export const data = [
   {
     key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-    tags: ["nice", "developer"],
+    title: "diet video",
+    content: "contents",
+    subject: ["diet"],
+    category: "video",
   },
   {
     key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    tags: ["loser"],
+    title: "meal 1",
+    content: "contents",
+    subject: ["muscle"],
+    category: "meal",
   },
   {
     key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
+    title: "equipment1",
+    content: "contents",
+    subject: ["diet"],
+    category: "equipment",
   },
 ];
 
 export const userExpandColumns = [
+  { title: "Goal", dataIndex: "goal", key: "goal" },
+  { title: "Detailed", dataIndex: "detailed", key: "detailed" },
   { title: "Date", dataIndex: "date", key: "date" },
-  { title: "Name", dataIndex: "name", key: "name" },
   {
-    title: "Status",
-    key: "state",
-    render: () => (
-      <span>
-        <Badge status="success" />
-        Finished
-      </span>
-    ),
-  },
-  {
-    title: "Action",
-    dataIndex: "operation",
-    key: "operation",
-    render: () => (
-      <Space size="middle">
-        <a>Pause</a>
-        <a>Stop</a>
-      </Space>
+    title: "CheckDate",
+    key: "checkdate",
+    dataIndex: "checkdate",
+    render: (tags: any) => (
+      <>
+        {tags.map((tag: any) => {
+          let color = tag.length > 5 ? "geekblue" : "green";
+          if (tag === "loser") {
+            color = "volcano";
+          }
+          return (
+            <Tag color={color} key={tag}>
+              {tag.toUpperCase()}
+            </Tag>
+          );
+        })}
+      </>
     ),
   },
 ];
@@ -103,8 +98,10 @@ export const userExpandColumns = [
 export const userExpandData = [
   {
     key: 0,
-    date: "2014-12-24 23:12:00",
-    name: "This is production name",
+    date: "2019-12-24 23:12:00",
+    goal: "diet",
+    detailed: "-5kg",
+    checkdate: ["MON", "TUE"],
   },
 ];
 
@@ -119,5 +116,5 @@ export const userData = [
 export const userColumns = [
   { title: "Name", dataIndex: "name", key: "name" },
   { title: "Create date", dataIndex: "createdAt", key: "createdAt" },
-  { title: "Action", key: "operation", render: () => <a>Do something</a> },
+  { title: "Action", key: "operation", render: () => <a>Delete</a> },
 ];
