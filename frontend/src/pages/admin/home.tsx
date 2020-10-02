@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Layout, Menu, Breadcrumb } from "antd";
 import { UserOutlined } from "@ant-design/icons";
+
+import UserManageTable from "components/admin/UserManageTable";
+import RecommendManageTable from "components/admin/RecommendManageTable";
+import { data, columns, userColumns, userData } from "__MOCK__/mock";
+
 import styles from "./styles.module.scss";
 
 const { SubMenu } = Menu;
@@ -52,7 +57,15 @@ const Home = () => {
               minHeight: 280,
             }}
           >
-            {selectedKey} page
+            {selectedKey === "user" ? (
+              <UserManageTable columns={userColumns} data={userData} />
+            ) : (
+              <RecommendManageTable
+                data={data.filter((data) => data.category === selectedKey)}
+                columns={columns}
+                title={selectedKey}
+              />
+            )}
           </Content>
         </Layout>
       </Layout>
