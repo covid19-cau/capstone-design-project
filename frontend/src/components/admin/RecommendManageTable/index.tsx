@@ -33,7 +33,7 @@ const RecommendManageTable: React.FC<IProps> = ({
         type="primary"
         style={{ marginBottom: 16 }}
       >
-        추가하기
+        Add
       </Button>
       <ContentsModal
         visible={visible}
