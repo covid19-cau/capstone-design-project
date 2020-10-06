@@ -13,10 +13,14 @@ const { Option } = Select;
 interface IProps {
   columns: ColumnsType<any>;
   data: any;
-  title: string;
+  selectedKey: string;
 }
 
-const RecommendManageTable: React.FC<IProps> = ({ columns, data, title }) => {
+const RecommendManageTable: React.FC<IProps> = ({
+  columns,
+  data,
+  selectedKey,
+}) => {
   const [visible, setVisible] = useState(false);
   const onChange = (value: any) => {
     console.log(`selected ${value}`);
@@ -44,6 +48,12 @@ const RecommendManageTable: React.FC<IProps> = ({ columns, data, title }) => {
           <h5>Content</h5>
           <Input placeholder="content" />
         </div>
+        {selectedKey === "video" && (
+          <div className={styles.wrapper}>
+            <h5>Url</h5>
+            <Input placeholder="url" />
+          </div>
+        )}
         <div className={styles.wrapper}>
           <h5>Tags</h5>
           <Select

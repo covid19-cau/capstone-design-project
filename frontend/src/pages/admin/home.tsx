@@ -14,6 +14,7 @@ const { Header, Content, Sider } = Layout;
 
 const Home = () => {
   const [selectedKey, setSelectedKey] = useState("video");
+
   return (
     <Layout className={styles.layout}>
       <Header className="header">
@@ -64,7 +65,7 @@ const Home = () => {
               <RecommendManageTable
                 data={data.filter((data) => data.category === selectedKey)}
                 columns={columns}
-                title={selectedKey}
+                selectedKey={selectedKey}
               />
             )}
           </Content>
