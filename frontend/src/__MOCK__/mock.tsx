@@ -1,6 +1,8 @@
 import React from "react";
 import { Tag, Badge, Space } from "antd";
 
+export const recommendTags = ["muscle", "diet", "body-shape"];
+
 export const columns = [
   {
     title: "Title",

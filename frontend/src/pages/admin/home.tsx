@@ -4,6 +4,7 @@ import { UserOutlined } from "@ant-design/icons";
 
 import UserManageTable from "components/admin/UserManageTable";
 import RecommendManageTable from "components/admin/RecommendManageTable";
+
 import { data, columns, userColumns, userData } from "__MOCK__/mock";
 
 import styles from "./styles.module.scss";
