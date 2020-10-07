@@ -2,7 +2,7 @@ import React from "react";
 import { Table } from "antd";
 import { ColumnsType } from "antd/lib/table";
 
-import expandedRowRender from "./UserExpandRender";
+import expandedRowRender from "../UserExpandRender";
 
 interface IProps {
   data: any;

@@ -1,6 +1,8 @@
 import React from "react";
 import { Tag, Badge, Space } from "antd";
 
+export const recommendTags = ["muscle", "diet", "body-shape"];
+
 export const columns = [
   {
     title: "Title",
@@ -38,7 +40,6 @@ export const columns = [
     key: "action",
     render: (text: any, record: any) => (
       <Space size="middle">
-        <a>Update</a>
         <a>Delete</a>
       </Space>
     ),
@@ -50,7 +51,7 @@ export const data = [
     key: "1",
     title: "diet video",
     content: "contents",
-    subject: ["diet"],
+    subject: ["body-shape"],
     category: "video",
   },
   {
