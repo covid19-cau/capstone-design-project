@@ -3,16 +3,16 @@ spring:
     active: local # 기본적으로 local이 선택된다는 뜻
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/capstone?serverTimezone=Asia/Seoul&useSSL=false
+    url: jdbc:mysql://3.34.144.33:3306/data?serverTimezone=UTC&characterEncoding=UTF-8
     username: root
-    password: 
+    password: covid19
 
 ---
 
 spring:
   profiles: local
 server:
-  port: 8071
+  port: 8079
 
 ---
 
@@ -23,7 +23,7 @@ spring:
   profiles: production
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/sbs_exam_1?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    url: "jdbc:mysql://localhost:3306/test?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC"
     username: root
     password: 
 server:

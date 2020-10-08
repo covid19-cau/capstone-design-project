@@ -10,11 +10,19 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class Equipment {
-
-	@Id
-	private String title;
 	
-	private String contents;
+	@Id
+	private String id;
+	
+	private String name;
 
-	private int subject;
+	private int price;
+	
+	private String url;
+	
+	private int shipping_charge;
+	
+	private String seller;
+	
+	private int training_purpose;
 }

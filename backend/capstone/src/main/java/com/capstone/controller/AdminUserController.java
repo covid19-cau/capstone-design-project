@@ -20,7 +20,7 @@ import com.capstone.model.User;
 import com.sun.jndi.toolkit.url.Uri;
 
 @RestController
-public class UserController {
+public class AdminUserController {
 
 	@Autowired
 	private UserDao userDao; 
@@ -39,6 +39,11 @@ public class UserController {
 	
 	@GetMapping("admin/user")
 	public List<User> retrieveAllUser(){
+		List<User> user = userDao.findAllUser();
+		if(user == null) {
+			user.add(new User("h","e","l","l",3,"o"));
+			return user;
+		}
 		return userDao.findAllUser();
 	}
 

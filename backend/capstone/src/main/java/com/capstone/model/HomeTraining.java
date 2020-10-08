@@ -13,9 +13,15 @@ public class HomeTraining {
 	
 	
 	@Id
+	private String id;
+	
+	private String name;
+
 	private String title;
 	
-	private String contents;
+	private String uploader;
 	
-	private int subject;
+	private String url;
+	
+	private int training_purpose;
 }

@@ -12,12 +12,20 @@ import lombok.Data;
 public class Meal {
 	
 	
-	
-	
 	@Id
-	private String title;
+	private String id;
 	
-	private String contents;
+	private String name;
+
+	private int serving_size;
 	
-	private int subject;
+	private int calory;
+	
+	private int carbohydrate;
+	
+	private int protein;
+	
+	private int fat;
+	
+	private int training_purpose;
 }

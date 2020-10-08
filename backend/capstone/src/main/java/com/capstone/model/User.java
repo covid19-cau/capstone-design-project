@@ -12,8 +12,8 @@ import lombok.Data;
 public class User {
 	
 	@Id
-	private int index;
 	private String id;
+	private String name;
 	private String email;
 	private String passwd;
 	//diet =1 , muscle =2; body =3
