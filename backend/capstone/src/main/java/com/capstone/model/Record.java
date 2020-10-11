@@ -23,9 +23,7 @@ public class Record {
 	@Column (nullable = false)
 	private Long challenge_id;
 	
-	@Column (nullable = false)
-	@Temporal(TemporalType.DATE)
-	private Date date;
+
 	
 	@Column (nullable = false, length = 10)
 	private String result;

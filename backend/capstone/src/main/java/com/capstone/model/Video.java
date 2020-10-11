@@ -9,14 +9,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.capstone.model.Equipment.Training_Purpose;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table (schema = "Data")
+@Table (name = "vedio")
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class Video {
 	
@@ -38,13 +40,13 @@ public class Video {
 	@Column(length = 30)
 	private String url;
 	
-	@Column (nullable = false)
-	@Enumerated(EnumType.STRING)
-	private Training_Purpose training_purpose;
-	
-	private enum Training_Purpose{
-		Weightloss,
-		Muscleaugmentation,
-		Bodytypecorrection
-	}
+//	@Column (nullable = false)
+//	@Enumerated(EnumType.STRING)
+//	private Training_Purpose training_purpose;
+//	
+//	private enum Training_Purpose{
+//		Weightloss,
+//		Muscleaugmentation,
+//		Bodytypecorrection
+//	}
 }
