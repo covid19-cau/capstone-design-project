@@ -2,30 +2,34 @@ package com.capstone.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
+@Table(name = "meal")
 public class Meal {
 	
 	
 	@Id
-	private String id;
+	private int id;
 	
 	private String name;
 
-	private int serving_size;
+	private String serving_size;
 	
-	private int calory;
+	private String calory;
 	
-	private int carbohydrate;
+	private String carbohydrate;
 	
-	private int protein;
+	private String protein;
 	
-	private int fat;
+	private String fat;
 	
-	private int training_purpose;
+	private String training_purpose;
 }

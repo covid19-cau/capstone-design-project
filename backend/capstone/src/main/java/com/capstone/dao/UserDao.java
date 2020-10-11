@@ -22,7 +22,7 @@ public class UserDao {
 	}
 	
 	public List<User> findAllUser(){
-		return userList;
+		return userRepo.findAll();
 	}
 	
 	public User findByID(String ID) {
