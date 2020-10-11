@@ -9,34 +9,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.capstone.model.Equipment.Training_Purpose;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Entity
-@Table(schema = "Data")
+@Table (schema = "Data")
 @AllArgsConstructor
 @Data
-public class Equipment {
+public class Video {
+	
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column (updatable = false, nullable = false, columnDefinition = "INT(11)", unique = true)
 	private Long id;
 	
-	@Column (nullable = false, length = 100)
+	@Column(length = 50)
 	private String name;
 
-	@Column (nullable = false, length = 15)
-	private int price;
+	@Column(length = 100)
+	private String title;
 	
-	@Column (nullable = false, length = 500)
+	@Column(length = 30)
+	private String uploader;
+	
+	@Column(length = 30)
 	private String url;
-	
-	@Column (length = 15, columnDefinition = "default 'free'") //배송비 없으면 free 출
-	private String shipping_charge;
-	
-	@Column (length = 30)
-	private String seller;
 	
 	@Column (nullable = false)
 	@Enumerated(EnumType.STRING)
@@ -47,5 +47,4 @@ public class Equipment {
 		Muscleaugmentation,
 		Bodytypecorrection
 	}
-
 }
