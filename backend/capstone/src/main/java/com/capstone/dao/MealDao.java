@@ -14,25 +14,34 @@ public class MealDao {
 	@Autowired
 	private MealRepository mealRepo;
 	
-	
 	public List<Meal> findAllMeal(){
 		return mealRepo.findAll();
 	}
 	
-	public boolean deleteMeal(String title) {
-		return false;
+	public boolean deleteMeal(int id) {
+		
+		// if no data, return false
+		if(mealRepo.findById(id) == null) {
+			return false;
+		}
+		mealRepo.deleteById(id);
+		return true;
 	}
 	
-	public boolean saveMeal(Meal meal) {
-		return false;
+	public void saveMeal(Meal meal) {
+		mealRepo.save(meal);
 	}
 
-	public void replaceMeal(String id, Meal meal) {
+	public boolean replaceMeal(int id, Meal meal) {
 		// TODO Auto-generated method stub
-		
+		// if no data, return false
+			if(mealRepo.findById(id) == null) {
+				return false;
+			}
+			return true;
 	}
 
-	public Meal findByID(String id) {
+	public Meal findByID(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

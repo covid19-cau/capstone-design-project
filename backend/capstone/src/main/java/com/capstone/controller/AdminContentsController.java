@@ -79,8 +79,10 @@ public class AdminContentsController {
 	}
 	
 	@DeleteMapping("admin/meal/delete/{id}")
-	public void deleteMealData(@RequestParam String id) {
-		mealDao.deleteMeal(id);
+	public void deleteMealData(@RequestParam int id) {
+		if(mealDao.deleteMeal(id) == false){
+			throw new ContentsNotFoundException(String.format("ID[%s] Meal info not found", id));
+		}
 	}
 	
 	@DeleteMapping("admin/equipment/delete/{id}")
@@ -98,7 +100,7 @@ public class AdminContentsController {
 	}
 	
 	@PutMapping("admin/meal/modify/{id}")
-	public void modifyMealData(@RequestParam String id, @RequestBody Meal meal) {
+	public void modifyMealData(@RequestParam int id, @RequestBody Meal meal) {
 		Meal one = mealDao.findByID(id);
 		if(one == null) {
 			throw new ContentsNotFoundException(String.format("ID[%s] meal info not found", id));

@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "meal")
 public class Meal {
 	
-	
 	@Id
 	private int id;
 	
