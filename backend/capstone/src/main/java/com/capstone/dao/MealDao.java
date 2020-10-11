@@ -14,8 +14,9 @@ public class MealDao {
 	@Autowired
 	private MealRepository mealRepo;
 	
+	
 	public List<Meal> findAllMeal(){
-		return null;
+		return mealRepo.findAll();
 	}
 	
 	public boolean deleteMeal(String title) {
