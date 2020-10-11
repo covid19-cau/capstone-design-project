@@ -33,13 +33,8 @@ public class HomeTrainingDao {
 		
 	}
 
-	public void replaceMeal(String id, Meal meal) {
+	public HomeTraining findByID(String id) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	public void replaceEquipment(String id, Equipment equipment) {
-		// TODO Auto-generated method stub
-		
+		return null;
 	}
 }
