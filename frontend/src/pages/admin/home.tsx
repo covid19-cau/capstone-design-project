@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Layout, Menu, Breadcrumb } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 
 import UserManageTable from "components/admin/UserManageTable";
 import RecommendManageTable from "components/admin/RecommendManageTable";
+
+import * as adminApis from "apis/admin";
 
 import { data, columns, userColumns, userData } from "__MOCK__/mock";
 
@@ -14,6 +16,15 @@ const { Header, Content, Sider } = Layout;
 
 const Home = () => {
   const [selectedKey, setSelectedKey] = useState("video");
+
+  useEffect(() => {
+    async function getLists() {
+      const data = await adminApis.getRecommendContents(selectedKey);
+      console.log(data);
+    }
+
+    getLists();
+  }, [selectedKey]);
 
   return (
     <Layout className={styles.layout}>
