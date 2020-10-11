@@ -20,6 +20,7 @@ import com.capstone.dao.MealDao;
 import com.capstone.model.Equipment;
 import com.capstone.model.HomeTraining;
 import com.capstone.model.Meal;
+import com.capstone.model.User;
 
 @RestController
 public class AdminContentsController {
@@ -89,17 +90,29 @@ public class AdminContentsController {
 	
 	@PutMapping("admin/hometraining/modify/{id}")
 	public void modifyHomeTrainingData(@RequestParam String id, @RequestBody HomeTraining ht) {
+		HomeTraining one = hometrainingDao.findByID(id);
+		if(one == null) {
+			throw new ContentsNotFoundException(String.format("ID[%s] HomeTraining info not found", id));
+		}
 		hometrainingDao.replaceHomeTraining(id,ht);
 	}
 	
 	@PutMapping("admin/meal/modify/{id}")
 	public void modifyMealData(@RequestParam String id, @RequestBody Meal meal) {
-		hometrainingDao.replaceMeal(id,meal);
+		Meal one = mealDao.findByID(id);
+		if(one == null) {
+			throw new ContentsNotFoundException(String.format("ID[%s] meal info not found", id));
+		}
+		mealDao.replaceMeal(id,meal);
 	}
 	
 	@PutMapping("admin/equipment/modify/{id}")
 	public void modifyEquipmentData(@RequestParam String id, @RequestBody Equipment equipment) {
-		hometrainingDao.replaceEquipment(id,equipment);
+		Equipment one = equipmentDao.findByID(id);
+		if(one == null) {
+			throw new ContentsNotFoundException(String.format("ID[%s] equipment info not found", id));
+		}
+		equipmentDao.replaceEquipment(id,equipment);
 	}
 	
 }

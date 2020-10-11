@@ -25,4 +25,14 @@ public class EquipmentDao {
 	public boolean saveEquipment(Equipment equipment) {
 		return false;
 	}
+
+	public void replaceEquipment(String id, Equipment equipment) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Equipment findByID(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

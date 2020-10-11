@@ -25,4 +25,14 @@ public class MealDao {
 	public boolean saveMeal(Meal meal) {
 		return false;
 	}
+
+	public void replaceMeal(String id, Meal meal) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Meal findByID(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
