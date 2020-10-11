@@ -6,26 +6,26 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.capstone.model.User;
-import com.capstone.repository.UsersRepository;
+import com.capstone.model.Member;
+import com.capstone.repository.MemberRepository;
 
 @Component
 public class UserDao {
 
 	@Autowired
-	private UsersRepository userRepo;
+	private MemberRepository userRepo;
 	
-	ArrayList<User> userList = new ArrayList<User>();
+	ArrayList<Member> userList = new ArrayList<Member>();
 	
 	public UserDao() {
-		userList.add(new User("s1234","kimguenwoo","slalek152@naver.com","qwer123",2,"+10kg healthtraining"));
+		
 	}
 	
-	public List<User> findAllUser(){
+	public List<Member> findAllUser(){
 		return userRepo.findAll();
 	}
 	
-	public User findByID(String ID) {
+	public Member findByID(String ID) {
 		return null;
 	}
 
@@ -33,7 +33,7 @@ public class UserDao {
 		return false;
 	}
 
-	public void replaceUser(String id, User user) {
+	public void replaceUser(String id, Member user) {
 		// TODO Auto-generated method stub
 		
 	}
