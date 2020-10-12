@@ -13,18 +13,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.capstone.dao.EquipmentDao;
-import com.capstone.dao.HomeTrainingDao;
+import com.capstone.dao.VideoDao;
 import com.capstone.dao.MealDao;
 import com.capstone.model.Equipment;
-import com.capstone.model.HomeTraining;
 import com.capstone.model.Meal;
-import com.capstone.model.User;
+import com.capstone.model.Member;
+import com.capstone.model.Video;
 
+@CrossOrigin()
 @RestController
 public class AdminContentsController {
-	
 	@Autowired
 	private EquipmentDao equipmentDao;
 	
@@ -32,11 +33,11 @@ public class AdminContentsController {
 	private MealDao mealDao;
 	
 	@Autowired
-	private HomeTrainingDao hometrainingDao;
+	private VideoDao videoDao;
 	
-	@GetMapping("/admin/hometraining")
-	public List<HomeTraining> listHomeTraining(){
-		return hometrainingDao.findAllHomeTraining();
+	@GetMapping("/admin/video")
+	public List<Video> listHomeTraining(){
+		return videoDao.findAllVideo();
 	}
 	
 	@GetMapping("/admin/meal")
@@ -50,8 +51,8 @@ public class AdminContentsController {
 	}
 
 	@PostMapping("/admin/hometraining/add")
-	public ResponseEntity<HomeTraining> addHomeTrainingData(@RequestBody HomeTraining ht) {
-		hometrainingDao.saveHomeTraining(ht);
+	public ResponseEntity<Video> addHomeTrainingData(@RequestBody Video ht) {
+		videoDao.saveVideo(ht);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(ht.getTitle()).toUri();
 		return ResponseEntity.created(location).build();
@@ -73,9 +74,9 @@ public class AdminContentsController {
 		return ResponseEntity.created(location).build();
 	}
 	
-	@DeleteMapping("admin/hometraining/delete/{id}")
+	@DeleteMapping("admin/video/delete/{id}")
 	public void deleteHomeTrainingData(@RequestParam String id) {
-		hometrainingDao.deleteHomeTraining(id);
+		videoDao.deleteVideo(id);
 	}
 	
 	@DeleteMapping("admin/meal/delete/{id}")
@@ -90,13 +91,13 @@ public class AdminContentsController {
 		equipmentDao.deleteEquipment(id);
 	}
 	
-	@PutMapping("admin/hometraining/modify/{id}")
-	public void modifyHomeTrainingData(@RequestParam String id, @RequestBody HomeTraining ht) {
-		HomeTraining one = hometrainingDao.findByID(id);
+	@PutMapping("admin/video/modify/{id}")
+	public void modifyHomeTrainingData(@RequestParam String id, @RequestBody Video ht) {
+		Video one = videoDao.findByID(id);
 		if(one == null) {
 			throw new ContentsNotFoundException(String.format("ID[%s] HomeTraining info not found", id));
 		}
-		hometrainingDao.replaceHomeTraining(id,ht);
+		videoDao.replaceVideo(id,ht);
 	}
 	
 	@PutMapping("admin/meal/modify/{id}")

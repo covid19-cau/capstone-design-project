@@ -1,42 +1,23 @@
 package com.capstone.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-@Entity
-@Table(schema = "Data")
-@AllArgsConstructor
-@Data
-public class Equipment {
+public class Challenge {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column (updatable = false, nullable = false, columnDefinition = "INT(11)", unique = true)
 	private Long id;
 	
-	@Column (nullable = false, length = 100)
-	private String name;
-
-	@Column (nullable = false, length = 15)
-	private int price;
-	
-	@Column (nullable = false, length = 500)
-	private String url;
-	
-	@Column (length = 15, columnDefinition = "default 'free'") //배송비 없으면 free 출
-	private String shipping_charge;
-	
-	@Column (length = 30)
-	private String seller;
+	@Column (nullable = false)
+	private Long member_id;
 	
 	@Column (nullable = false)
 	@Enumerated(EnumType.STRING)
@@ -47,5 +28,24 @@ public class Equipment {
 		Muscleaugmentation,
 		Bodytypecorrection
 	}
-
+	
+	@Column (nullable = false, length = 100)
+	private String challenge_goal;
+	
+	@Column (nullable = false, length = 100)
+	private String training_to_do;
+	
+	@Column (nullable = false)
+	private Date start_date;
+	
+	@Column (nullable = false)
+	private Date end_date;
+	
+	@Column (nullable = false)
+	@Enumerated(EnumType.STRING)
+	private Certification_Day certification_day;
+	
+	private enum Certification_Day{
+		Mon, Tue, Wed, Thu, Fri, Sat, Sun
+	}
 }

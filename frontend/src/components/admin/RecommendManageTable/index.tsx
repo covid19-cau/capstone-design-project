@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Table, Button, Input, Select } from "antd";
 import { ColumnsType } from "antd/lib/table";
 
-import { recommendTags } from "__MOCK__/mock";
+import { dataColumn, recommendTags } from "__MOCK__/mock";
 
 import ContentsModal from "../ContentsModal";
 
@@ -13,7 +13,7 @@ const { Option } = Select;
 interface IProps {
   columns: ColumnsType<any>;
   data: any;
-  selectedKey: string;
+  selectedKey: dataColumn;
 }
 
 const RecommendManageTable: React.FC<IProps> = ({
@@ -48,7 +48,7 @@ const RecommendManageTable: React.FC<IProps> = ({
           <h5>Content</h5>
           <Input placeholder="content" />
         </div>
-        {selectedKey === "video" && (
+        {selectedKey === dataColumn.video && (
           <div className={styles.wrapper}>
             <h5>Url</h5>
             <Input placeholder="url" />
