@@ -35,7 +35,7 @@ public class AdminContentsController {
 	@Autowired
 	private VideoDao videoDao;
 	
-	@GetMapping("/admin/hometraining")
+	@GetMapping("/admin/video")
 	public List<Video> listHomeTraining(){
 		return videoDao.findAllVideo();
 	}
@@ -74,7 +74,7 @@ public class AdminContentsController {
 		return ResponseEntity.created(location).build();
 	}
 	
-	@DeleteMapping("admin/hometraining/delete/{id}")
+	@DeleteMapping("admin/video/delete/{id}")
 	public void deleteHomeTrainingData(@RequestParam String id) {
 		videoDao.deleteVideo(id);
 	}
@@ -89,7 +89,7 @@ public class AdminContentsController {
 		equipmentDao.deleteEquipment(id);
 	}
 	
-	@PutMapping("admin/hometraining/modify/{id}")
+	@PutMapping("admin/video/modify/{id}")
 	public void modifyHomeTrainingData(@RequestParam String id, @RequestBody Video ht) {
 		Video one = videoDao.findByID(id);
 		if(one == null) {

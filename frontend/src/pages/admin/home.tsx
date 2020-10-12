@@ -7,7 +7,14 @@ import RecommendManageTable from "components/admin/RecommendManageTable";
 
 import * as adminApis from "apis/admin";
 
-import { data, columns, userColumns, userData } from "__MOCK__/mock";
+import {
+  data,
+  columns,
+  userColumns,
+  userData,
+  dataColumns,
+  dataColumn,
+} from "__MOCK__/mock";
 
 import styles from "./styles.module.scss";
 
@@ -15,12 +22,13 @@ const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 const Home = () => {
-  const [selectedKey, setSelectedKey] = useState("video");
+  const [recommendContents, setRecommendContents] = useState([]);
+  const [selectedKey, setSelectedKey] = useState<dataColumn>(dataColumn.video);
 
   useEffect(() => {
     async function getLists() {
       const data = await adminApis.getRecommendContents(selectedKey);
-      console.log(data);
+      setRecommendContents(data);
     }
 
     getLists();
@@ -41,7 +49,7 @@ const Home = () => {
             defaultSelectedKeys={["video"]}
             defaultOpenKeys={["sub1"]}
             style={{ height: "100%", borderRight: 0 }}
-            onClick={(data) => setSelectedKey(data.key as string)}
+            onClick={(data) => setSelectedKey(data.key as dataColumn)}
           >
             <SubMenu
               key="sub1"
@@ -70,12 +78,12 @@ const Home = () => {
               minHeight: 280,
             }}
           >
-            {selectedKey === "user" ? (
+            {selectedKey === dataColumn.user ? (
               <UserManageTable columns={userColumns} data={userData} />
             ) : (
               <RecommendManageTable
-                data={data.filter((data) => data.category === selectedKey)}
-                columns={columns}
+                data={recommendContents}
+                columns={dataColumns[selectedKey]}
                 selectedKey={selectedKey}
               />
             )}

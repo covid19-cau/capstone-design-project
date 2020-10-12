@@ -1,10 +1,9 @@
+import { dataColumn } from "__MOCK__/mock";
 import api from "./index";
 
-export async function getRecommendContents(category: string) {
-  console.log(category);
+export async function getRecommendContents(category: dataColumn) {
   try {
     const response = await api.get(`/admin/${category}`);
-    console.log(response);
     return response.data;
   } catch (err) {
     console.error(err);
