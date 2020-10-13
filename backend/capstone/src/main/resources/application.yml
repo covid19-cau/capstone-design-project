@@ -16,7 +16,7 @@ server:
 
 ---
 
-debug: false
+debug: true
 
 # 운영환경만의 설정
 spring:

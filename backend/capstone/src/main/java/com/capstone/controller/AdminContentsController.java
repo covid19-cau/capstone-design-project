@@ -5,22 +5,22 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.capstone.dao.EquipmentDao;
-import com.capstone.dao.VideoDao;
 import com.capstone.dao.MealDao;
+import com.capstone.dao.VideoDao;
 import com.capstone.model.Equipment;
 import com.capstone.model.Meal;
-import com.capstone.model.Member;
 import com.capstone.model.Video;
 
 @CrossOrigin()
@@ -75,44 +75,32 @@ public class AdminContentsController {
 	}
 	
 	@DeleteMapping("admin/video/delete/{id}")
-	public void deleteHomeTrainingData(@RequestParam String id) {
+	public void deleteHomeTrainingData(@PathVariable int id) {
 		videoDao.deleteVideo(id);
 	}
 	
 	@DeleteMapping("admin/meal/delete/{id}")
-	public void deleteMealData(@RequestParam String id) {
+	public void deleteMealData(@PathVariable int id) {
 		mealDao.deleteMeal(id);
 	}
 	
 	@DeleteMapping("admin/equipment/delete/{id}")
-	public void deleteequipmentData(@RequestParam String id) {
+	public void deleteequipmentData(@PathVariable int id) {
 		equipmentDao.deleteEquipment(id);
 	}
 	
 	@PutMapping("admin/video/modify/{id}")
-	public void modifyHomeTrainingData(@RequestParam String id, @RequestBody Video ht) {
-		Video one = videoDao.findByID(id);
-		if(one == null) {
-			throw new ContentsNotFoundException(String.format("ID[%s] HomeTraining info not found", id));
-		}
-		videoDao.replaceVideo(id,ht);
+	public void modifyHomeTrainingData(@PathVariable int id, @RequestBody Video video) {
+		videoDao.replaceVideo(id,video);
 	}
 	
 	@PutMapping("admin/meal/modify/{id}")
-	public void modifyMealData(@RequestParam String id, @RequestBody Meal meal) {
-		Meal one = mealDao.findByID(id);
-		if(one == null) {
-			throw new ContentsNotFoundException(String.format("ID[%s] meal info not found", id));
-		}
+	public void modifyMealData(@PathVariable int id, @RequestBody Meal meal) {
 		mealDao.replaceMeal(id,meal);
 	}
 	
 	@PutMapping("admin/equipment/modify/{id}")
-	public void modifyEquipmentData(@RequestParam String id, @RequestBody Equipment equipment) {
-		Equipment one = equipmentDao.findByID(id);
-		if(one == null) {
-			throw new ContentsNotFoundException(String.format("ID[%s] equipment info not found", id));
-		}
+	public void modifyEquipmentData(@PathVariable int id, @RequestBody Equipment equipment) {
 		equipmentDao.replaceEquipment(id,equipment);
 	}
 	
