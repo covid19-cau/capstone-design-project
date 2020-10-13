@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.capstone.controller.ContentsNotFoundException;
 import com.capstone.model.Meal;
 import com.capstone.repository.MealRepository;
 
@@ -18,31 +19,27 @@ public class MealDao {
 		return mealRepo.findAll();
 	}
 	
-	public boolean deleteMeal(int id) {
+	public void deleteMeal(int id) {
 		
 		// if no data, return false
-		if(mealRepo.findById(id) == null) {
-			return false;
+		if(!mealRepo.existsById(id)) {
+			throw new ContentsNotFoundException(String.format("Meal ID [%d] is not found", id));
 		}
 		mealRepo.deleteById(id);
-		return true;
 	}
 	
 	public void saveMeal(Meal meal) {
 		mealRepo.save(meal);
 	}
 
-	public boolean replaceMeal(int id, Meal meal) {
+	public void replaceMeal(int id, Meal meal) {
 		// TODO Auto-generated method stub
 		// if no data, return false
-			if(mealRepo.findById(id) == null) {
-				return false;
+			if(!mealRepo.existsById(id)) {
+				throw new ContentsNotFoundException(String.format("Meal ID [%d] is not found", id));
 			}
-			return true;
+			mealRepo.deleteById(id);
+			mealRepo.save(meal);
 	}
 
-	public Meal findByID(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

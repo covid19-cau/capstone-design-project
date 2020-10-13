@@ -2,6 +2,7 @@ package com.capstone.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,27 +15,35 @@ public class UserDao {
 
 	@Autowired
 	private MemberRepository userRepo;
-	
-	ArrayList<Member> userList = new ArrayList<Member>();
-	
-	public UserDao() {
 		
-	}
 	
 	public List<Member> findAllUser(){
 		return userRepo.findAll();
 	}
 	
-	public Member findByID(String ID) {
-		return null;
+	public Optional<Member> findByID(int id) {
+		return userRepo.findById(id);
 	}
 
-	public boolean deleteUser(String ID) {
-		return false;
+	public boolean deleteUser(int id) {
+		if(!userRepo.existsById(id)) {
+			return false;
+		}
+		userRepo.deleteById(id);
+		return true;
 	}
 
-	public void replaceUser(String id, Member user) {
+	public boolean replaceUser(int id, Member user) {
 		// TODO Auto-generated method stub
-		
+		if(!userRepo.existsById(id)) {
+			return false;
+		}
+		userRepo.deleteById(id);
+		userRepo.save(user);
+		return true;
+	}
+	
+	public void saveUser(Member user) {
+		userRepo.save(user);
 	}
 }

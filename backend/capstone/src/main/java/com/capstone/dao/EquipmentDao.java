@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.capstone.controller.ContentsNotFoundException;
 import com.capstone.model.Equipment;
 import com.capstone.repository.EquipmentRepository;
 
@@ -15,20 +16,25 @@ public class EquipmentDao {
 	private EquipmentRepository equipmentRepo;
 	
 	public List<Equipment> findAllEquipment(){
-		return null;
+		return equipmentRepo.findAll();
 	}
 	
-	public boolean deleteEquipment(String title) {
-		return false;
+	public void deleteEquipment(int id) {
+		if(!equipmentRepo.existsById(id))
+			throw new ContentsNotFoundException(String.format("Equipment ID [%d] is not found", id));
+		equipmentRepo.deleteById(id);
 	}
 	
-	public boolean saveEquipment(Equipment equipment) {
-		return false;
+	public  void saveEquipment(Equipment equipment) {
+		equipmentRepo.save(equipment);
 	}
 
-	public void replaceEquipment(String id, Equipment equipment) {
+	public void replaceEquipment(int id, Equipment equipment) {
 		// TODO Auto-generated method stub
-		
+		if(!equipmentRepo.existsById(id))
+			throw new ContentsNotFoundException(String.format("Equipment ID [%d] is not found", id));
+		equipmentRepo.deleteById(id);
+		equipmentRepo.save(equipment);
 	}
 
 	public Equipment findByID(String id) {

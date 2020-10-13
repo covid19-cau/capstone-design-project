@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.capstone.model.Member;
 
 @Repository
-public interface MemberRepository extends JpaRepository<Member,String>{
+public interface MemberRepository extends JpaRepository<Member,Integer>{
 
 }
