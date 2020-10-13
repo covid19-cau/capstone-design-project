@@ -10,9 +10,12 @@ export async function getRecommendContents(category: dataColumn) {
   }
 }
 
-export async function registerRecommendContents(data: any) {
+export async function registerRecommendContents(
+  category: dataColumn,
+  data: any
+) {
   try {
-    const response = await api.get(`/admin/`);
+    const response = await api.post(`/admin/${category}/add`, data);
     return response.data;
   } catch (err) {
     console.error(err);

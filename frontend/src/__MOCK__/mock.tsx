@@ -1,7 +1,7 @@
 import React from "react";
 import { Tag, Badge, Space } from "antd";
 
-export const recommendTags = ["muscle", "diet", "body-shape"];
+export const recommendTags = ["muscle", "Weight loss", "body-shape"];
 
 export enum dataColumn {
   video = "video",

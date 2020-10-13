@@ -28,6 +28,7 @@ const ContentsModal: React.FC<IProps> = ({
       visible={visible}
       onOk={handleOk}
       onCancel={handleCancel}
+      footer={<div />}
     >
       {children}
     </Modal>
