@@ -97,17 +97,35 @@ export const dataColumns = {
   ],
   [dataColumn.equipment]: [
     {
-      title: "Title",
-      dataIndex: "title",
-      key: "title",
-      render: (text: any) => <a>{text}</a>,
+      title: "name",
+      dataIndex: "name",
+      key: "name",
+      render: (text: any) => <p>{text}</p>,
     },
     {
-      title: "Content",
-      dataIndex: "content",
-      key: "content",
+      title: "price",
+      dataIndex: "price",
+      key: "price",
+      render: (text: any) => <p>{text}</p>,
     },
-
+    {
+      title: "seller",
+      dataIndex: "seller",
+      key: "seller",
+      render: (text: any) => <p>{text}</p>,
+    },
+    {
+      title: "shipping_charge",
+      dataIndex: "shipping_charge",
+      key: "shipping_charge",
+      render: (text: any) => <p>{text}</p>,
+    },
+    {
+      title: "training_purpose",
+      dataIndex: "training_purpose",
+      key: "training_purpose",
+      render: (text: any) => <Tag>{text}</Tag>,
+    },
     {
       title: "Action",
       key: "action",

@@ -11,11 +11,13 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(schema = "Data")
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
+@Table(schema = "equipment")
 public class Equipment {
 	
 	@Id
@@ -27,7 +29,7 @@ public class Equipment {
 	private String name;
 
 	@Column (nullable = false, length = 15)
-	private int price;
+	private String price;
 	
 	@Column (nullable = false, length = 500)
 	private String url;
@@ -38,14 +40,6 @@ public class Equipment {
 	@Column (length = 30)
 	private String seller;
 	
-	@Column (nullable = false)
-	@Enumerated(EnumType.STRING)
-	private Training_Purpose training_purpose;
-	
-	private enum Training_Purpose{
-		Weightloss,
-		Muscleaugmentation,
-		Bodytypecorrection
-	}
+	private String training_purpose;
 
 }
