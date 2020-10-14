@@ -12,7 +12,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(schema = "Information")
+@Table(name = "member", catalog = "information")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -27,10 +27,10 @@ public class Member {
 	private String email;
 	
 	@Column (nullable = false, length = 30)
-	private String passwd;
+	private String name;
 	
 	@Column (nullable = false, length = 30)
-	private String name;
+	private String password;
 	
 	
 }

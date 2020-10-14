@@ -3,9 +3,9 @@ package com.capstone.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.capstone.model.Video;
+import com.capstone.model.Record;
 
 @Repository
-public interface VideoRepository extends JpaRepository<Video, Long>{
+public interface RecordRepository extends JpaRepository<Record, Long>{
 
 }

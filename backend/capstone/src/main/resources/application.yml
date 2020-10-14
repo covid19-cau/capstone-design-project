@@ -6,14 +6,19 @@ spring:
     url: jdbc:mysql://3.34.144.33:3306/data?serverTimezone=UTC&characterEncoding=UTF-8
     username: root
     password: covid19
-
+    
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
 ---
 
-spring:
+spring:  
   profiles: local
 server:
   port: 8079
-
 ---
 
 debug: true

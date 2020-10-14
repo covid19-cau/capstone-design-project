@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.capstone.controller.UserNotFoundException;
+import com.capstone.controller.ContentsNotFoundException;
 
 @RestController
 @ControllerAdvice
@@ -25,7 +25,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 		return new ResponseEntity<Object>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@ExceptionHandler(UserNotFoundException.class)
+	@ExceptionHandler(ContentsNotFoundException.class)
 	public final ResponseEntity<Object> handleUserNotFoundException(Exception ex,WebRequest request){
 		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(),request.getDescription(false));
 		
