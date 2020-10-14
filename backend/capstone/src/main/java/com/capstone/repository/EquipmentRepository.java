@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.capstone.model.Equipment;
 
 @Repository
-public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
+public interface EquipmentRepository extends JpaRepository<Equipment, Integer> {
 
 }
  
