@@ -50,7 +50,7 @@ public class AdminContentsController {
 		return equipmentDao.findAllEquipment();
 	}
 
-	@PostMapping("/admin/hometraining/add")
+	@PostMapping("/admin/video/add")
 	public ResponseEntity<Video> addHomeTrainingData(@RequestBody Video ht) {
 		videoDao.saveVideo(ht);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")

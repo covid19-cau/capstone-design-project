@@ -31,7 +31,7 @@ public class AdminMemberController {
 	// 개별멤버 조회
 	// HATEOAS 적용 -> 결과에 전체멤버(retrieveAllMember) 함께 링크
 	@GetMapping("/member/{id}")
-	public EntityModel<Member> retrieveMember(@PathVariable long id) {
+	public EntityModel<Member> retrieveMember(@PathVariable Integer id) {
 		Optional<Member> member = memberRepo.findById(id);			// 반환값이 옵셔널인 이유는 id가 있을 수도 있고 없을 수도 있어서
 	
 		if (!member.isPresent()) {
