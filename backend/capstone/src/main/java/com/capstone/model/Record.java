@@ -12,7 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(schema = "Information")
+@Table(name = "record", catalog = "information")
 public class Record {
 	
 	@Id
