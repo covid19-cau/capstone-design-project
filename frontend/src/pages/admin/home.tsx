@@ -21,7 +21,6 @@ const Home = () => {
   useEffect(() => {
     async function getLists() {
       const data = await adminApis.getContents(selectedKey);
-      console.log(data);
       setContents(data);
     }
 
