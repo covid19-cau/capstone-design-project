@@ -19,4 +19,16 @@ export async function registerContents(category: dataColumn, data: any) {
   }
 }
 
+export async function updateContents(category: dataColumn, data: any) {
+  try {
+    const response = await api.put(
+      `/admin/${category}/modify/${data.id}`,
+      data
+    );
+    return response.data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export async function getUserLists(category: string) {}

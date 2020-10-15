@@ -15,10 +15,12 @@ interface IProps {
   data: any;
   selectedKey: dataColumn;
   registerContents: (params: object) => void;
+  updateContents: (params: object) => void;
 }
 
 const recommendKeys = {
   [dataColumn.meal]: [
+    "id",
     "name",
     "serving_size",
     "calory",
@@ -26,9 +28,23 @@ const recommendKeys = {
     "fat",
     "protein",
   ],
-  [dataColumn.video]: ["name", "title", "uploader", "url"],
-  [dataColumn.equipment]: ["name", "price", "shipping_charge", "seller", "url"],
-  [dataColumn.user]: ["name", "serving_size", "calory", "carbohydrate", "fat"],
+  [dataColumn.video]: ["id", "name", "title", "uploader", "url"],
+  [dataColumn.equipment]: [
+    "id",
+    "name",
+    "price",
+    "shipping_charge",
+    "seller",
+    "url",
+  ],
+  [dataColumn.user]: [
+    "id",
+    "name",
+    "serving_size",
+    "calory",
+    "carbohydrate",
+    "fat",
+  ],
 };
 
 const RecommendManageTable: React.FC<IProps> = ({
@@ -36,16 +52,39 @@ const RecommendManageTable: React.FC<IProps> = ({
   data,
   selectedKey,
   registerContents,
+  updateContents,
 }) => {
   const [visible, setVisible] = useState(false);
-  const onChange = (value: any) => {
-    console.log(`selected ${value}`);
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [isUpdate, setIsUpdate] = useState(false);
+
+  const onChange = (selectedRowKeys: any) => {
+    setSelectedRowKeys(selectedRowKeys);
   };
   const onFinish = (values: any) => {
-    registerContents(values);
+    if (isUpdate) {
+      setIsUpdate(false);
+      updateContents(values);
+    } else {
+      registerContents(values);
+    }
+
     setVisible(false);
   };
+
+  const onUpdate = () => {
+    const selected = data.find((d: any) => d.key === selectedRowKeys[0]);
+    form.setFieldsValue(selected);
+    setIsUpdate(true);
+    setVisible(true);
+  };
+
   const [form] = Form.useForm();
+
+  const rowSelection = {
+    selectedRowKeys,
+    onChange,
+  };
 
   return (
     <div>
@@ -56,21 +95,32 @@ const RecommendManageTable: React.FC<IProps> = ({
       >
         Add
       </Button>
+      <Button
+        onClick={onUpdate}
+        type="ghost"
+        style={{ marginBottom: 16, marginLeft: 10 }}
+      >
+        Update
+      </Button>
       <ContentsModal
         visible={visible}
         setVisible={setVisible}
         title="Recommend Contents"
       >
-        <Form name="basic" form={form} onFinish={onFinish}>
-          {recommendKeys[selectedKey].map((key: any) => {
+        <Form name="basic" form={form} onFinish={onFinish} initialValues={{}}>
+          {recommendKeys[selectedKey].map((key: string) => {
             return (
-              <div className={styles.wrapper}>
+              <div className={styles.wrapper} key={key}>
                 <Form.Item
+                  id={key}
+                  key={key}
                   label={key}
                   name={key}
-                  rules={[{ required: true, message: `Please input ${key}!` }]}
+                  rules={[
+                    { required: key !== "id", message: `Please input ${key}!` },
+                  ]}
                 >
-                  <Input placeholder={key} />
+                  <Input placeholder={key} disabled={key === "id"} />
                 </Form.Item>
               </div>
             );
@@ -79,23 +129,19 @@ const RecommendManageTable: React.FC<IProps> = ({
           <div className={styles.wrapper}>
             <h5>Tags</h5>
             <Form.Item label="Training purpose" name="training_purpose">
-              <Select
-                style={{ width: 200 }}
-                placeholder="Training purpose"
-                onChange={onChange}
-              >
+              <Select style={{ width: 200 }} placeholder="Training purpose">
                 {recommendTags.map((tag) => {
                   return <Option value={tag}>{tag}</Option>;
                 })}
               </Select>
             </Form.Item>
           </div>
-          <Button type="primary" htmlType="submit">
-            Submit
+          <Button type={isUpdate ? "primary" : "ghost"} htmlType="submit">
+            {isUpdate ? "Update" : "Submit"}
           </Button>
         </Form>
       </ContentsModal>
-      <Table columns={columns} dataSource={data} />
+      <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
     </div>
   );
 };

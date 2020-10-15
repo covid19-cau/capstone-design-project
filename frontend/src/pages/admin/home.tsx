@@ -42,6 +42,20 @@ const Home = () => {
     register();
   };
 
+  const updateContents = (params: object) => {
+    async function getLists() {
+      const data = await adminApis.getContents(selectedKey);
+      setContents(data);
+    }
+
+    async function update() {
+      await adminApis
+        .updateContents(selectedKey, params)
+        .then(() => getLists());
+    }
+
+    update();
+  };
   return (
     <Layout className={styles.layout}>
       <Header className="header">
@@ -97,6 +111,7 @@ const Home = () => {
                 columns={dataColumns[selectedKey]}
                 selectedKey={selectedKey}
                 registerContents={registerContents}
+                updateContents={updateContents}
               />
             )}
           </Content>
