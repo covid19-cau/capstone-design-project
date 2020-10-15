@@ -136,6 +136,32 @@ export const dataColumns = {
       ),
     },
   ],
+  [dataColumn.user]: [
+    {
+      title: "name",
+      dataIndex: "name",
+      key: "name",
+      render: (text: any) => <p>{text}</p>,
+    },
+    {
+      title: "name",
+      dataIndex: "name",
+      key: "name",
+      render: (text: any) => <p>{text}</p>,
+    },
+    {
+      title: "email",
+      dataIndex: "email",
+      key: "email",
+      render: (text: any) => <p>{text}</p>,
+    },
+    {
+      title: "password",
+      dataIndex: "password",
+      key: "password",
+      render: (text: any) => <p>{text}</p>,
+    },
+  ],
 };
 export const columns = [
   {
@@ -158,30 +184,6 @@ export const columns = [
         <a>Delete</a>
       </Space>
     ),
-  },
-];
-
-export const data = [
-  {
-    key: "1",
-    title: "diet video",
-    content: "contents",
-    subject: ["body-shape"],
-    category: "video",
-  },
-  {
-    key: "2",
-    title: "meal 1",
-    content: "contents",
-    subject: ["muscle"],
-    category: "meal",
-  },
-  {
-    key: "3",
-    title: "equipment1",
-    content: "contents",
-    subject: ["diet"],
-    category: "equipment",
   },
 ];
 
@@ -219,18 +221,4 @@ export const userExpandData = [
     detailed: "-5kg",
     checkdate: ["MON", "TUE"],
   },
-];
-
-export const userData = [
-  {
-    key: 0,
-    name: `User`,
-    createdAt: "2014-12-24 23:12:00",
-  },
-];
-
-export const userColumns = [
-  { title: "Name", dataIndex: "name", key: "name" },
-  { title: "Create date", dataIndex: "createdAt", key: "createdAt" },
-  { title: "Action", key: "operation", render: () => <a>Delete</a> },
 ];

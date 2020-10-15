@@ -7,14 +7,7 @@ import RecommendManageTable from "components/admin/RecommendManageTable";
 
 import * as adminApis from "apis/admin";
 
-import {
-  data,
-  columns,
-  userColumns,
-  userData,
-  dataColumns,
-  dataColumn,
-} from "__MOCK__/mock";
+import { dataColumns, dataColumn } from "data";
 
 import styles from "./styles.module.scss";
 
@@ -22,13 +15,14 @@ const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 const Home = () => {
-  const [recommendContents, setRecommendContents] = useState([]);
+  const [contents, setContents] = useState([]);
   const [selectedKey, setSelectedKey] = useState<dataColumn>(dataColumn.video);
 
   useEffect(() => {
     async function getLists() {
-      const data = await adminApis.getRecommendContents(selectedKey);
-      setRecommendContents(data);
+      const data = await adminApis.getContents(selectedKey);
+      console.log(data);
+      setContents(data);
     }
 
     getLists();
@@ -36,13 +30,13 @@ const Home = () => {
 
   const registerContents = (params: object) => {
     async function getLists() {
-      const data = await adminApis.getRecommendContents(selectedKey);
-      setRecommendContents(data);
+      const data = await adminApis.getContents(selectedKey);
+      setContents(data);
     }
 
     async function register() {
       await adminApis
-        .registerRecommendContents(selectedKey, params)
+        .registerContents(selectedKey, params)
         .then(() => getLists());
     }
 
@@ -94,10 +88,13 @@ const Home = () => {
             }}
           >
             {selectedKey === dataColumn.user ? (
-              <UserManageTable columns={userColumns} data={userData} />
+              <UserManageTable
+                columns={dataColumns[selectedKey]}
+                data={contents}
+              />
             ) : (
               <RecommendManageTable
-                data={recommendContents}
+                data={contents}
                 columns={dataColumns[selectedKey]}
                 selectedKey={selectedKey}
                 registerContents={registerContents}

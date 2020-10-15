@@ -1,19 +1,16 @@
-import { dataColumn } from "__MOCK__/mock";
+import { dataColumn } from "data";
 import api from "./index";
 
-export async function getRecommendContents(category: dataColumn) {
+export async function getContents(category: dataColumn) {
   try {
     const response = await api.get(`/admin/${category}`);
-    return response.data;
+    return response.data.map((data: any) => ({ ...data, key: data.id }));
   } catch (err) {
     console.error(err);
   }
 }
 
-export async function registerRecommendContents(
-  category: dataColumn,
-  data: any
-) {
+export async function registerContents(category: dataColumn, data: any) {
   try {
     const response = await api.post(`/admin/${category}/add`, data);
     return response.data;
