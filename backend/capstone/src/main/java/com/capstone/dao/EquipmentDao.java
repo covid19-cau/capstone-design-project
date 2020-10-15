@@ -33,12 +33,9 @@ public class EquipmentDao {
 		// TODO Auto-generated method stub
 		if(!equipmentRepo.existsById(id))
 			throw new ContentsNotFoundException(String.format("Equipment ID [%d] is not found", id));
-		equipmentRepo.deleteById(id);
-		equipmentRepo.save(equipment);
+		Equipment target = equipmentRepo.getOne(id);
+		target.update(equipment);
+		equipmentRepo.save(target);
 	}
 
-	public Equipment findByID(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
