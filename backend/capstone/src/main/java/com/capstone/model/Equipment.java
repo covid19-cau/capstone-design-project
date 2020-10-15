@@ -14,10 +14,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(schema = "Data")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Table(name = "equipment", catalog = "data")
 public class Equipment {
 	
 	@Id
@@ -42,6 +42,7 @@ public class Equipment {
 	
 	private String training_purpose;
 
+
 	public void update(Equipment equipment) {
 		name = equipment.getName();
 		price = equipment.getPrice();
@@ -62,5 +63,6 @@ public class Equipment {
 		Bodytypecorrection
 	}
 	*/
+
 
 }

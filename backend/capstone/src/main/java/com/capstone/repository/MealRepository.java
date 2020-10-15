@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.capstone.model.Meal;
 
 @Repository
-public interface MealRepository extends JpaRepository<Meal,Integer>{
+public interface MealRepository extends JpaRepository<Meal, Integer>{
 
 }

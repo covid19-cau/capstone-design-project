@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.capstone.model.Video;
 
 @Repository
-public interface VideoRepository extends JpaRepository<Video,Integer>{
+public interface VideoRepository extends JpaRepository<Video, Integer>{
 
 }

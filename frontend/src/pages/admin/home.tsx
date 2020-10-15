@@ -34,6 +34,21 @@ const Home = () => {
     getLists();
   }, [selectedKey]);
 
+  const registerContents = (params: object) => {
+    async function getLists() {
+      const data = await adminApis.getRecommendContents(selectedKey);
+      setRecommendContents(data);
+    }
+
+    async function register() {
+      await adminApis
+        .registerRecommendContents(selectedKey, params)
+        .then(() => getLists());
+    }
+
+    register();
+  };
+
   return (
     <Layout className={styles.layout}>
       <Header className="header">
@@ -85,6 +100,7 @@ const Home = () => {
                 data={recommendContents}
                 columns={dataColumns[selectedKey]}
                 selectedKey={selectedKey}
+                registerContents={registerContents}
               />
             )}
           </Content>
