@@ -36,8 +36,13 @@ public class VideoDao {
 		if(!videoRepo.existsById(id)) {
 			throw new ContentsNotFoundException(String.format("Video ID [%d] is not found", id));
 		}
-		videoRepo.deleteById(id);
-		videoRepo.save(video);
+		//videoRepo.deleteById(id)
+		Video target = videoRepo.getOne(id);
+		target.setName(video.getName());
+		target.setTitle(video.getTitle());
+		target.setUploader(video.getUploader());
+		target.setUrl(video.getUrl());
+		videoRepo.save(target);
 	}
 
 }

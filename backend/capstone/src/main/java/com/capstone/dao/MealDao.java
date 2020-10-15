@@ -38,8 +38,15 @@ public class MealDao {
 			if(!mealRepo.existsById(id)) {
 				throw new ContentsNotFoundException(String.format("Meal ID [%d] is not found", id));
 			}
-			mealRepo.deleteById(id);
-			mealRepo.save(meal);
+			Meal target = mealRepo.getOne(id);
+			target.setCalory(meal.getCalory());
+			target.setCarbohydrate(meal.getCarbohydrate());
+			target.setFat(meal.getFat());
+			target.setName(meal.getName());
+			target.setProtein(meal.getProtein());
+			target.setServing_size(meal.getServing_size());
+			target.setTraining_purpose(meal.getTraining_purpose());
+			mealRepo.save(target);
 	}
 
 }

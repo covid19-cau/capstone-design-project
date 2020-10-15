@@ -23,7 +23,7 @@ public class Equipment {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column (updatable = false, nullable = false, columnDefinition = "INT(11)", unique = true)
-	private Long id;
+	private int id;
 	
 	@Column (nullable = false, length = 100)
 	private String name;
@@ -41,5 +41,28 @@ public class Equipment {
 	private String seller;
 	
 	private String training_purpose;
+
+
+	public void update(Equipment equipment) {
+		name = equipment.getName();
+		price = equipment.getPrice();
+		url = equipment.getUrl();
+		shipping_charge = equipment.getShipping_charge();
+		seller = equipment.getSeller();
+		training_purpose = equipment.getTraining_purpose();
+	}
+	
+	/*
+	@Column (nullable = false)
+	@Enumerated(EnumType.STRING)
+	private Training_Purpose training_purpose;
+	
+	private enum Training_Purpose{
+		Weightloss,
+		Muscleaugmentation,
+		Bodytypecorrection
+	}
+	*/
+
 
 }
