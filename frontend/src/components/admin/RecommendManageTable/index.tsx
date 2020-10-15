@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Table, Button, Input, Select, Form } from "antd";
 import { ColumnsType } from "antd/lib/table";
 
-import { dataColumn, recommendTags } from "__MOCK__/mock";
+import { dataColumn, recommendTags } from "data";
 
 import ContentsModal from "../ContentsModal";
 
@@ -26,8 +26,8 @@ const recommendKeys = {
     "fat",
     "protein",
   ],
-  [dataColumn.video]: ["name", "title", "uploader", "URL"],
-  [dataColumn.equipment]: ["name", "price", "shipping_charge", "seller", "URL"],
+  [dataColumn.video]: ["name", "title", "uploader", "url"],
+  [dataColumn.equipment]: ["name", "price", "shipping_charge", "seller", "url"],
   [dataColumn.user]: ["name", "serving_size", "calory", "carbohydrate", "fat"],
 };
 

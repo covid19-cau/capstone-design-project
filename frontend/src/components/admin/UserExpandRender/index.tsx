@@ -2,7 +2,7 @@ import React from "react";
 import { Table } from "antd";
 import { ColumnsType } from "antd/lib/table";
 
-import { userExpandColumns, userExpandData } from "__MOCK__/mock";
+import { userExpandColumns, userExpandData } from "data";
 
 interface IProps {
   data: any;
