@@ -30,15 +30,6 @@ export const dataColumns = {
       key: "uploader",
       render: (text: any) => <Tag>{text}</Tag>,
     },
-    {
-      title: "Action",
-      key: "action",
-      render: (text: any, record: any) => (
-        <Space size="middle">
-          <a>Delete</a>
-        </Space>
-      ),
-    },
   ],
   [dataColumn.meal]: [
     {
@@ -85,15 +76,6 @@ export const dataColumns = {
 
       render: (text: any) => <p>{text}</p>,
     },
-    {
-      title: "Action",
-      key: "action",
-      render: (text: any, record: any) => (
-        <Space size="middle">
-          <a>Delete</a>
-        </Space>
-      ),
-    },
   ],
   [dataColumn.equipment]: [
     {
@@ -126,15 +108,6 @@ export const dataColumns = {
       key: "training_purpose",
       render: (text: any) => <Tag>{text}</Tag>,
     },
-    {
-      title: "Action",
-      key: "action",
-      render: (text: any, record: any) => (
-        <Space size="middle">
-          <a>Delete</a>
-        </Space>
-      ),
-    },
   ],
   [dataColumn.user]: [
     {
@@ -163,29 +136,6 @@ export const dataColumns = {
     },
   ],
 };
-export const columns = [
-  {
-    title: "Title",
-    dataIndex: "title",
-    key: "title",
-    render: (text: any) => <a>{text}</a>,
-  },
-  {
-    title: "Content",
-    dataIndex: "content",
-    key: "content",
-  },
-
-  {
-    title: "Action",
-    key: "action",
-    render: (text: any, record: any) => (
-      <Space size="middle">
-        <a>Delete</a>
-      </Space>
-    ),
-  },
-];
 
 export const userExpandColumns = [
   { title: "Goal", dataIndex: "goal", key: "goal" },
