@@ -56,6 +56,23 @@ const Home = () => {
 
     update();
   };
+
+  const deleteContents = (params: object) => {
+    console.log(params);
+    async function getLists() {
+      const data = await adminApis.getContents(selectedKey);
+      setContents(data);
+    }
+
+    async function deleteContent() {
+      await adminApis
+        .deleteContents(selectedKey, params)
+        .then(() => getLists());
+    }
+
+    deleteContent();
+  };
+
   return (
     <Layout className={styles.layout}>
       <Header className="header">
@@ -112,6 +129,7 @@ const Home = () => {
                 selectedKey={selectedKey}
                 registerContents={registerContents}
                 updateContents={updateContents}
+                deleteContents={deleteContents}
               />
             )}
           </Content>

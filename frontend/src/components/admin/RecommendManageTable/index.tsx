@@ -16,6 +16,7 @@ interface IProps {
   selectedKey: dataColumn;
   registerContents: (params: object) => void;
   updateContents: (params: object) => void;
+  deleteContents: (params: object) => void;
 }
 
 const recommendKeys = {
@@ -53,6 +54,7 @@ const RecommendManageTable: React.FC<IProps> = ({
   selectedKey,
   registerContents,
   updateContents,
+  deleteContents,
 }) => {
   const [visible, setVisible] = useState(false);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
@@ -85,7 +87,7 @@ const RecommendManageTable: React.FC<IProps> = ({
     selectedRowKeys,
     onChange,
   };
-
+  console.log(data.find((d: any) => d.key === selectedRowKeys[0]));
   return (
     <div>
       <Button
@@ -101,6 +103,15 @@ const RecommendManageTable: React.FC<IProps> = ({
         style={{ marginBottom: 16, marginLeft: 10 }}
       >
         Update
+      </Button>
+      <Button
+        onClick={() =>
+          deleteContents(data.find((d: any) => d.key === selectedRowKeys[0]))
+        }
+        danger
+        style={{ marginBottom: 16, marginLeft: 10 }}
+      >
+        Delete
       </Button>
       <ContentsModal
         visible={visible}
