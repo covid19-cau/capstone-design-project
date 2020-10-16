@@ -51,10 +51,10 @@ public class AdminContentsController {
 	}
 
 	@PostMapping("/admin/video/add")
-	public ResponseEntity<Video> addHomeTrainingData(@RequestBody Video ht) {
-		videoDao.saveVideo(ht);
+	public ResponseEntity<Video> addHomeTrainingData(@RequestBody Video video) {
+		videoDao.saveVideo(video);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(ht.getTitle()).toUri();
+				.buildAndExpand(video.getTitle()).toUri();
 		return ResponseEntity.created(location).build();
 	}
 	
