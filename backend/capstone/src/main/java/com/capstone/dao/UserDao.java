@@ -21,8 +21,9 @@ public class UserDao {
 		return userRepo.findAll();
 	}
 	
-	public Optional<Member> findByID(int id) {
-		return userRepo.findById(id);
+	public Member findByID(int id) {
+		Optional<Member> user = userRepo.findById(id);
+		return user.get();
 	}
 
 	public boolean deleteUser(int id) {

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -21,7 +23,7 @@ public class Member {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column (updatable = false, nullable = false, columnDefinition = "INT(11)", unique = true)
-	private Long id;
+	private int id;
 	
 	@Column (nullable = false, length = 50, unique = true)
 	private String email;
@@ -32,5 +34,8 @@ public class Member {
 	@Column (nullable = false, length = 30)
 	private String password;
 	
+	@OneToOne
+	@JoinColumn(name = "challenge")
+	private Challenge challenge;
 	
 }
