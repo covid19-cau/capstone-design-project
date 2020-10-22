@@ -26,14 +26,13 @@ public class AdminUserController {
 	
 	@GetMapping("admin/user/{id}")
 	@ResponseBody
-	public Optional<Member> findUserData(@RequestParam int id) {
-		Optional<Member> one = userDao.findByID(id);
+	public Member findUserData(@RequestParam int id) {
+		Member one = userDao.findByID(id);
 		if(one == null) {
 			throw new UserNotFoundException(String.format("User [%s] not found", id));
 		}
-		
 		return one;
-	} 
+	}
 	
 	@GetMapping("admin/user")
 	public List<Member> retrieveAllUser(){

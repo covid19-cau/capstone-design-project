@@ -23,6 +23,7 @@ public class Challenge {
 	@Column (nullable = false)
 	private Long member_id;
 	
+	
 	@Column (nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Training_Purpose training_purpose;
