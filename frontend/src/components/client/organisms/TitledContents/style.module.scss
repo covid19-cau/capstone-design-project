@@ -1,10 +1,8 @@
-@import "../../../assets/styles/_color";
-
 .section {
   & .homeCard {
     margin-right: 20px;
     & .homeCardTitle {
-      color: $brand;
+      color: #ff7e64;
     }
     & .icon {
       width: 20px;

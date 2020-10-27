@@ -31,7 +31,6 @@ const TitledContents: React.FC<IProps> = ({ title, contents, icon }) => {
           return (
             <a href={content.link} target="_blank">
               <Card className={styles.homeCard}>
-                <img src={icon} alt="home" className={styles.icon} />
                 <p className={styles.homeCardTitle}>{content.title}</p>
                 {content.content}
               </Card>
