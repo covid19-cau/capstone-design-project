@@ -1,0 +1,19 @@
+.default {
+  background: white;
+  box-shadow: 0 30px 60px 12px rgba(0, 0, 33, 0.05),
+    0 4px 24px 0 rgba(0, 0, 33, 0.05), 0 0 1px 0 rgba(0, 0, 33, 0.09);
+  width: 200px;
+  min-height: 100px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+@keyframes hoverAnimation {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translateY(-4px);
+  }
+}

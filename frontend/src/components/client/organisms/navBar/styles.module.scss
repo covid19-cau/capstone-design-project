@@ -1,0 +1,22 @@
+@import "../../../assets/styles/_color";
+
+.default {
+  width: 100%;
+  min-height: 50px;
+  background-color: #03a9f4;
+  font-weight: 300;
+  color: white;
+  & .logo {
+    width: 50px;
+    margin-left: 80px;
+    margin-right: 80px;
+  }
+  & .menu {
+    margin-right: 100px;
+  }
+}
+
+.active {
+  font-weight: bold;
+  color: white !important;
+}
