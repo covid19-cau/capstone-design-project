@@ -1,0 +1,20 @@
+@import "../../../assets/styles/_color";
+
+.section {
+  & .homeCard {
+    margin-right: 20px;
+    & .homeCardTitle {
+      color: $brand;
+    }
+    & .icon {
+      width: 20px;
+    }
+  }
+}
+
+.content {
+  padding: 80px;
+}
+.title {
+  margin-bottom: 20px;
+}
