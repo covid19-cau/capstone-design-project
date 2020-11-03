@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone.dao.UserDao;
 import com.capstone.model.Challenge;
-import com.capstone.service.AuthenticationService;
+import com.capstone.service.CustomUserDetailService;
 import com.capstone.service.RecommendSet;
 import com.capstone.service.UserService;
 
@@ -23,15 +23,11 @@ public class UserServiceController {
 	UserDao userDao;
 	
 	@Autowired
-	AuthenticationService authenticationService;
+	CustomUserDetailService authenticationService;
 	
 	@Autowired
 	UserService userService;
 	
-	@GetMapping("/login") // userSingIn() in authenticationService
-	public boolean signInUser(@RequestParam("id") String id, @RequestParam("password") String password) {
-		return authenticationService.userSignIn(id, password);
-	}
 	
 	@GetMapping("/user/{id}/challenge")
 	public Challenge getChallengeInfo (@PathVariable int id) {

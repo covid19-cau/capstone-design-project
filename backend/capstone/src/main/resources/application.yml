@@ -6,6 +6,8 @@ spring:
     url: jdbc:mysql://3.34.144.33:3306/data?serverTimezone=UTC&characterEncoding=UTF-8
     username: root
     password: covid19
+  jwt:
+    secret: govlepel@$&
     
   jpa:
     properties:
