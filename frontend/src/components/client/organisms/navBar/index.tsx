@@ -25,7 +25,12 @@ const NavBar: React.FC<IProps> = ({ className }) => {
           <p className={styles.logo}>🏋🏻</p>
           <Block className={styles.menus} sort={Sort.LEFT_CENTER}>
             {routes.map((route) => {
-              if (route.title === "admin") return;
+              if (
+                route.title === "admin" ||
+                route.title === "Signin" ||
+                route.title === "Signup"
+              )
+                return;
               return (
                 <ListItem key={route.title}>
                   <NavLink
