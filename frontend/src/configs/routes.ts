@@ -1,5 +1,6 @@
 import AdminHome from "pages/admin/home";
 import Home from "pages/client/home";
+import Challenge from "pages/client/challenge";
 
 const routes = [
   {
@@ -9,8 +10,13 @@ const routes = [
   },
   {
     path: "/",
-    title: "home",
+    title: "Home",
     component: Home,
+  },
+  {
+    path: "/challenge",
+    title: "Challenge",
+    component: Challenge,
   },
 ];
 

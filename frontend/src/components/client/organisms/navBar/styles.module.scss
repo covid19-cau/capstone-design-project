@@ -1,22 +1,30 @@
-@import "../../../assets/styles/_color";
-
 .default {
   width: 100%;
-  min-height: 50px;
-  background-color: #03a9f4;
+  height: 64px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
   font-weight: 300;
-  color: white;
+  background-color: white;
   & .logo {
-    width: 50px;
-    margin-left: 80px;
-    margin-right: 80px;
+    margin: 0;
+    font-size: 25px;
+    width: 15%;
+  }
+  & .menus {
+    width: 85%;
   }
   & .menu {
+    color: black;
+    font-weight: bold;
     margin-right: 100px;
   }
 }
 
 .active {
   font-weight: bold;
-  color: white !important;
+  color: #ff7e64 !important;
+}
+
+.wrapper {
+  height: inherit;
+  display: flex;
 }

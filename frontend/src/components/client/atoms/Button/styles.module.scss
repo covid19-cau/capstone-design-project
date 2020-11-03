@@ -1,5 +1,3 @@
-@import "../../../assets/styles/_color";
-
 .common {
   font-size: 14px;
   border-radius: 3px;
@@ -12,8 +10,8 @@
 }
 
 .brand {
-  background-color: $brand;
-  border: 1px solid $brand;
+  background-color: #ff7e64;
+  border: 1px solid #ff7e64;
   color: white;
 }
 
@@ -37,7 +35,7 @@
 
 .outline {
   background-color: white;
-  border: 2px solid $brand;
-  color: $brand;
+  border: 2px solid #ff7e64;
+  color: #ff7e64;
   font-weight: bold;
 }
