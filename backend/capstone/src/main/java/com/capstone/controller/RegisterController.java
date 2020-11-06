@@ -34,7 +34,7 @@ public class RegisterController {
 	public ResponseEntity<Member> createUser(@RequestBody Member user ) {
 		try {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
-			user.setRoles(Collections.singletonList("ROLE_ADMIN"));
+			user.setRoles(Collections.singletonList("ROLE_USER"));
 			userDao.saveUser(user);
 			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 					.buildAndExpand(user.getId()).toUri();
