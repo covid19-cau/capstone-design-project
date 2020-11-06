@@ -25,6 +25,10 @@ public class UserDao {
 		Optional<Member> user = userRepo.findById(id);
 		return user.get();
 	}
+	
+	public Member findByName(String name) {
+		return userRepo.findByName(name);
+	}
 
 	public boolean deleteUser(int id) {
 		if(!userRepo.existsById(id)) {

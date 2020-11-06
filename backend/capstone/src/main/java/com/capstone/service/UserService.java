@@ -27,7 +27,7 @@ public class UserService {
 
 	public void setChallenge(int id, Challenge challenge) {
 		// TODO Auto-generated method stub
-		user.setChallenge(challenge);
+		//user.setChallenge(challenge);
 	}
 	
 	public void updateChallenge(int id, Challenge challege) {
