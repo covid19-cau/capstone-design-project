@@ -26,7 +26,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "member", catalog = "information")
+@Table(name = "member", catalog = "data")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -34,7 +34,7 @@ public class Member implements UserDetails {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column (updatable = false, nullable = false, columnDefinition = "INT(11)", unique = true)
+	@Column (insertable = true ,updatable = true, nullable = false, columnDefinition = "INT(11)", unique = true)
 	private int id;
 	
 	@Column (nullable = false, length = 50, unique = true)
@@ -43,11 +43,8 @@ public class Member implements UserDetails {
 	@Column (nullable = false, length = 30, unique = true)
 	private String name;
 	
-	@Column (nullable = false, length = 30)
+	@Column (nullable = false, length = 200)
 	private String password;
-	
-	@OneToOne
-	private Challenge challenge;
 	
 	@ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();

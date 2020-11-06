@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Component
 public class JwtTokenProvider { // JWT token production and verification
-	private String secretKey = "webfirewood";
+	private String secretKey = "dsjflkjgfomkflndgjkdjgbnkdowjdkmkfokmbflnekojdklfneklgorevnlkmdkeorkgkflngfklmvdkjfo";
 
     // token effective time is 30 min
     private long tokenValidTime = 30 * 60 * 1000L;
@@ -33,7 +33,9 @@ public class JwtTokenProvider { // JWT token production and verification
     // instance initialization, encoding secret key Base64
     @PostConstruct
     protected void init() {
-        secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
+       secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
+
+
     }
 
     // JWT token produce
