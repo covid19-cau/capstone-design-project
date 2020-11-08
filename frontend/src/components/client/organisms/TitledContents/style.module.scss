@@ -1,0 +1,18 @@
+.section {
+  & .homeCard {
+    margin-right: 20px;
+    & .homeCardTitle {
+      color: #ff7e64;
+    }
+    & .icon {
+      width: 20px;
+    }
+  }
+}
+
+.content {
+  padding: 80px;
+}
+.title {
+  margin-bottom: 20px;
+}

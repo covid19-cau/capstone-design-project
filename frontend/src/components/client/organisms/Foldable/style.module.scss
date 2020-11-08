@@ -1,0 +1,49 @@
+@import '../../../assets/styles/_color';
+@import '../../../assets/styles/_animation';
+
+.card {
+  width: 100%;
+  padding: 0;
+  margin-bottom: 20px;
+  min-height: unset;
+  h5 {
+    margin: 2px 0px;
+  }
+}
+
+.cardHeader {
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 12px;
+  min-height: unset;
+  & .downIcon {
+    width: 20px;
+  }
+}
+
+.foldedCard {
+  background-color: $brand;
+  color: white;
+  border-radius: 12px 12px 0px 0px;
+
+  & .downIcon {
+    width: 20px;
+    transform: rotate(180deg);
+  }
+}
+
+.answer {
+  padding: 50px 20px;
+  animation: slide 1s;
+}
+
+@keyframes slide {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}

@@ -1,0 +1,41 @@
+.common {
+  font-size: 14px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.default {
+  background-color: white;
+  color: black;
+}
+
+.brand {
+  background-color: #ff7e64;
+  border: 1px solid #ff7e64;
+  color: white;
+}
+
+.gray {
+  background-color: white;
+  border: 1px solid #afafaf;
+  color: #afafaf;
+}
+
+.small {
+  height: 32px;
+}
+
+.medium {
+  height: 48px;
+}
+
+.large {
+  height: 60px;
+}
+
+.outline {
+  background-color: white;
+  border: 2px solid #ff7e64;
+  color: #ff7e64;
+  font-weight: bold;
+}

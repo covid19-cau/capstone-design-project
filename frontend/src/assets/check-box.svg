@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="baseline-check_box-24px" width="20" height="20" viewBox="0 0 20 20">
+    <defs>
+        <style>
+            .cls-1{fill:none}.cls-2{fill:#ff7e64}
+        </style>
+    </defs>
+    <path id="패스_23" d="M0 0h20v20H0z" class="cls-1" data-name="패스 23"/>
+    <path id="패스_24" d="M15.444 3H4.556A1.555 1.555 0 0 0 3 4.556v10.888A1.555 1.555 0 0 0 4.556 17h10.888A1.555 1.555 0 0 0 17 15.444V4.556A1.555 1.555 0 0 0 15.444 3zm-7 10.889L4.556 10l1.1-1.1 2.792 2.784 5.9-5.9 1.1 1.1z" class="cls-2" data-name="패스 24"/>
+</svg>
