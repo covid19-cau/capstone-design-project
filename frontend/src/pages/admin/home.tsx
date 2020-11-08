@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Layout, Menu, Breadcrumb } from "antd";
+import useSWR from "swr";
+
 import { UserOutlined } from "@ant-design/icons";
 
 import UserManageTable from "components/admin/UserManageTable";
@@ -15,62 +17,26 @@ const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 const Home = () => {
-  const [contents, setContents] = useState([]);
   const [selectedKey, setSelectedKey] = useState<dataColumn>(dataColumn.video);
 
-  useEffect(() => {
-    async function getLists() {
-      const data = await adminApis.getContents(selectedKey);
-      setContents(data);
-    }
+  const { data: listData, mutate } = useSWR([
+    `${process.env.REACT_APP_DEV_API_URL}/admin/${selectedKey}`,
+    selectedKey,
+  ]);
 
-    getLists();
-  }, [selectedKey]);
-
-  const registerContents = (params: object) => {
-    async function getLists() {
-      const data = await adminApis.getContents(selectedKey);
-      setContents(data);
-    }
-
-    async function register() {
-      await adminApis
-        .registerContents(selectedKey, params)
-        .then(() => getLists());
-    }
-
-    register();
+  const registerContents = async (params: object) => {
+    await adminApis.registerContents(selectedKey, params);
+    mutate();
   };
 
-  const updateContents = (params: object) => {
-    async function getLists() {
-      const data = await adminApis.getContents(selectedKey);
-      setContents(data);
-    }
-
-    async function update() {
-      await adminApis
-        .updateContents(selectedKey, params)
-        .then(() => getLists());
-    }
-
-    update();
+  const updateContents = async (params: object) => {
+    await adminApis.updateContents(selectedKey, params);
+    mutate();
   };
 
-  const deleteContents = (params: object) => {
-    console.log(params);
-    async function getLists() {
-      const data = await adminApis.getContents(selectedKey);
-      setContents(data);
-    }
-
-    async function deleteContent() {
-      await adminApis
-        .deleteContents(selectedKey, params)
-        .then(() => getLists());
-    }
-
-    deleteContent();
+  const deleteContents = async (params: object) => {
+    await adminApis.deleteContents(selectedKey, params);
+    mutate();
   };
 
   return (
@@ -120,11 +86,11 @@ const Home = () => {
             {selectedKey === dataColumn.user ? (
               <UserManageTable
                 columns={dataColumns[selectedKey]}
-                data={contents}
+                data={listData}
               />
             ) : (
               <RecommendManageTable
-                data={contents}
+                data={listData}
                 columns={dataColumns[selectedKey]}
                 selectedKey={selectedKey}
                 registerContents={registerContents}

@@ -1,6 +1,7 @@
 .section {
+  margin-top: 10px;
   & .homeCard {
-    margin-right: 20px;
+    margin: 45px;
     & .homeCardTitle {
       color: #ff7e64;
     }
@@ -15,4 +16,25 @@
 }
 .title {
   margin-bottom: 20px;
+}
+
+.prev {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  z-index: 10;
+  left: 0;
+  width: 25px;
+  transform: rotate(180deg);
+  cursor: pointer;
+}
+
+.next {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  z-index: 10;
+  right: 0;
+  width: 25px;
+  cursor: pointer;
 }

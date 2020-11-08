@@ -14,6 +14,9 @@ const Home = () => {
           { link: "", title: "video", content: "video content" },
           { link: "", title: "video2", content: "video content 2" },
           { link: "", title: "video3", content: "video content 3" },
+          { link: "", title: "video4", content: "video content 4" },
+          { link: "", title: "video5", content: "video content 5" },
+          { link: "", title: "video6", content: "video content 6" },
         ]}
         icon={""}
       />
