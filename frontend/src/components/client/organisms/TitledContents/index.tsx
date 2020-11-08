@@ -1,4 +1,5 @@
 import React from "react";
+import Swiper from "react-id-swiper";
 
 import Block, { Sort, Direction } from "components/client/molecules/Block";
 import Button from "components/client/atoms/Button";
@@ -14,6 +15,21 @@ interface IProps {
 }
 
 const TitledContents: React.FC<IProps> = ({ title, contents, icon }) => {
+  const params = {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    slidesPerGroup: 3,
+    loopFillGroupWithBlank: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  };
+
   return (
     <Block
       direction={Direction.COLUMN}
@@ -27,16 +43,18 @@ const TitledContents: React.FC<IProps> = ({ title, contents, icon }) => {
         </Button>
       </Block>
       <Block className={styles.section} sort={Sort.LEFT_CENTER}>
-        {contents.map((content) => {
-          return (
-            <a href={content.link} target="_blank">
-              <Card className={styles.homeCard}>
-                <p className={styles.homeCardTitle}>{content.title}</p>
-                {content.content}
-              </Card>
-            </a>
-          );
-        })}
+        <Swiper {...params}>
+          {contents.map((content) => {
+            return (
+              <a href={content.link} target="_blank">
+                <Card className={styles.homeCard}>
+                  <p className={styles.homeCardTitle}>{content.title}</p>
+                  {content.content}
+                </Card>
+              </a>
+            );
+          })}
+        </Swiper>
       </Block>
     </Block>
   );

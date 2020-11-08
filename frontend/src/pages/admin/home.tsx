@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Layout, Menu, Breadcrumb } from "antd";
+import useSWR from "swr";
+
 import { UserOutlined } from "@ant-design/icons";
 
 import UserManageTable from "components/admin/UserManageTable";
@@ -15,59 +17,33 @@ const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 const Home = () => {
-  const [contents, setContents] = useState([]);
   const [selectedKey, setSelectedKey] = useState<dataColumn>(dataColumn.video);
 
-  useEffect(() => {
-    async function getLists() {
-      const data = await adminApis.getContents(selectedKey);
-      setContents(data);
-    }
-
-    getLists();
-  }, [selectedKey]);
+  const { data: listData, mutate } = useSWR(
+    `${process.env.REACT_APP_DEV_API_URL}/admin/${selectedKey}`
+  );
 
   const registerContents = (params: object) => {
-    async function getLists() {
-      const data = await adminApis.getContents(selectedKey);
-      setContents(data);
-    }
-
     async function register() {
       await adminApis
         .registerContents(selectedKey, params)
-        .then(() => getLists());
+        .then(() => mutate());
     }
 
     register();
   };
 
   const updateContents = (params: object) => {
-    async function getLists() {
-      const data = await adminApis.getContents(selectedKey);
-      setContents(data);
-    }
-
     async function update() {
-      await adminApis
-        .updateContents(selectedKey, params)
-        .then(() => getLists());
+      await adminApis.updateContents(selectedKey, params).then(() => mutate());
     }
 
     update();
   };
 
   const deleteContents = (params: object) => {
-    console.log(params);
-    async function getLists() {
-      const data = await adminApis.getContents(selectedKey);
-      setContents(data);
-    }
-
     async function deleteContent() {
-      await adminApis
-        .deleteContents(selectedKey, params)
-        .then(() => getLists());
+      await adminApis.deleteContents(selectedKey, params).then(() => mutate());
     }
 
     deleteContent();
@@ -120,11 +96,11 @@ const Home = () => {
             {selectedKey === dataColumn.user ? (
               <UserManageTable
                 columns={dataColumns[selectedKey]}
-                data={contents}
+                data={listData}
               />
             ) : (
               <RecommendManageTable
-                data={contents}
+                data={listData}
                 columns={dataColumns[selectedKey]}
                 selectedKey={selectedKey}
                 registerContents={registerContents}
