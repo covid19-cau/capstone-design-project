@@ -19,34 +19,24 @@ const { Header, Content, Sider } = Layout;
 const Home = () => {
   const [selectedKey, setSelectedKey] = useState<dataColumn>(dataColumn.video);
 
-  const { data: listData, mutate } = useSWR(
-    `${process.env.REACT_APP_DEV_API_URL}/admin/${selectedKey}`
-  );
+  const { data: listData, mutate } = useSWR([
+    `${process.env.REACT_APP_DEV_API_URL}/admin/${selectedKey}`,
+    selectedKey,
+  ]);
 
-  const registerContents = (params: object) => {
-    async function register() {
-      await adminApis
-        .registerContents(selectedKey, params)
-        .then(() => mutate());
-    }
-
-    register();
+  const registerContents = async (params: object) => {
+    await adminApis.registerContents(selectedKey, params);
+    mutate();
   };
 
-  const updateContents = (params: object) => {
-    async function update() {
-      await adminApis.updateContents(selectedKey, params).then(() => mutate());
-    }
-
-    update();
+  const updateContents = async (params: object) => {
+    await adminApis.updateContents(selectedKey, params);
+    mutate();
   };
 
-  const deleteContents = (params: object) => {
-    async function deleteContent() {
-      await adminApis.deleteContents(selectedKey, params).then(() => mutate());
-    }
-
-    deleteContent();
+  const deleteContents = async (params: object) => {
+    await adminApis.deleteContents(selectedKey, params);
+    mutate();
   };
 
   return (
