@@ -1,5 +1,8 @@
 import React from "react";
 import Swiper from "react-id-swiper";
+import classNames from "classnames";
+
+import arrowIcon from "assets/right-arrow.png";
 
 import Block, { Sort, Direction } from "components/client/molecules/Block";
 import Button from "components/client/atoms/Button";
@@ -17,17 +20,24 @@ interface IProps {
 const TitledContents: React.FC<IProps> = ({ title, contents, icon }) => {
   const params = {
     slidesPerView: 3,
-    spaceBetween: 30,
     slidesPerGroup: 3,
     loopFillGroupWithBlank: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
     },
+    // renderPrevButton: () => (
+    //   <img
+    //     src={arrowIcon}
+    //     className={classNames("swiper-button-prev", styles.prev)}
+    //   />
+    // ),
+    // renderNextButton: () => (
+    //   <img
+    //     src={arrowIcon}
+    //     className={classNames("swiper-button-next", styles.next)}
+    //   />
+    // ),
   };
 
   return (
