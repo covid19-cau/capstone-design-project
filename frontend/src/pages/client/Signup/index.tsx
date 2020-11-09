@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+import * as clientApis from "apis/client";
+import { Redirect, useHistory } from "react-router-dom";
+
 import Button from "components/client/atoms/Button";
 import NavBar from "components/client/organisms/navBar";
 
@@ -7,14 +10,27 @@ import styles from "./styles.module.scss";
 
 function SignUp() {
   const [name, setName] = useState("");
-  const [id, setId] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
-  const [phone, setPhone] = useState("");
-  const [birthday, setBirthday] = useState("");
-  const [job, setJob] = useState("");
+  const [goal, setGoal] = useState("");
 
-  const handleFormSubmit = () => {};
+  const history = useHistory();
+
+  const handleFormSubmit = (event: any) => {
+    event.preventDefault();
+  };
+
+  const onSingup = async () => {
+    const data = await clientApis.signUp({ name, email, password, goal });
+    if (!data?.success) {
+      alert("signup info is not valid");
+      return;
+    }
+
+    alert("signup success");
+    history.push("/");
+  };
 
   return (
     <>
@@ -23,15 +39,27 @@ function SignUp() {
         <div className={styles.content}>
           <p className={styles.title}>Sign Up</p>
           <form onSubmit={handleFormSubmit}>
-            <label htmlFor="id">
-              <span className={styles.need}>*</span>ID
+            <label htmlFor="name">
+              <span className={styles.need}>*</span>name
               <br />
               <input
-                id="id"
-                type="id"
-                placeholder="id"
-                value={id}
-                onChange={(event) => setId(event.target.value)}
+                id="name"
+                type="text"
+                placeholder="Type your name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+            </label>
+            <br />
+            <label htmlFor="email">
+              <span className={styles.need}>*</span>email
+              <br />
+              <input
+                id="email"
+                type="email"
+                placeholder="Type your name"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
               />
             </label>
             <br />
@@ -59,18 +87,6 @@ function SignUp() {
               />
             </label>
             <br />
-            <label htmlFor="name">
-              <span className={styles.need}>*</span>name
-              <br />
-              <input
-                id="name"
-                type="text"
-                placeholder="Type your name"
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-              />
-            </label>
-            <br />
 
             <div className={styles.section}>
               <span className={styles.need}>*</span>Goal
@@ -80,6 +96,7 @@ function SignUp() {
                   name="goal"
                   id="diet"
                   type="radio"
+                  onChange={(event) => setGoal(event.target.value)}
                 />
                 <label htmlFor="diet">Diet</label>
                 <input
@@ -87,6 +104,7 @@ function SignUp() {
                   name="goal"
                   id="muscle"
                   type="radio"
+                  onChange={(event) => setGoal(event.target.value)}
                 />
                 <label htmlFor="muscle">Muscle</label>
                 <input
@@ -94,6 +112,7 @@ function SignUp() {
                   name="goal"
                   id="body-shape"
                   type="radio"
+                  onChange={(event) => setGoal(event.target.value)}
                 />
                 <label htmlFor="body-shape">Body-shape</label>
               </div>
@@ -104,6 +123,7 @@ function SignUp() {
               style={{ width: "100%" }}
               theme="brand"
               type="submit"
+              onClick={onSingup}
             >
               Sign Up
             </Button>
