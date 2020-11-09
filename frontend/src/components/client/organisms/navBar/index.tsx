@@ -45,6 +45,12 @@ const NavBar: React.FC<IProps> = ({ className }) => {
               );
             })}
           </Block>
+          <ListItem className={styles.login}>
+            {" "}
+            <NavLink to={"/signin"} exact>
+              Login
+            </NavLink>
+          </ListItem>
         </Block>
       </List>
     </nav>
