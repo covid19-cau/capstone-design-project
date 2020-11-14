@@ -9,6 +9,8 @@ interface IProps {
   className?: string;
 }
 
+export const themes = ["", styles.blue, styles.red, styles.green];
+
 const Badge: React.FC<IProps> = ({ children, className }) => {
   const classProps = classNames(styles.default, className);
   return <p className={classProps}>{children}</p>;

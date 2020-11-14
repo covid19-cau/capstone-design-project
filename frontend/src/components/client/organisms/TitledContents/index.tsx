@@ -7,7 +7,17 @@ import Button from "components/client/atoms/Button";
 import Card from "components/client/molecules/Card";
 import Badge from "components/client/atoms/Badge";
 
+import dietIcon from "assets/diet.png";
+import bodyshapeIcon from "assets/body-shape.png";
+import muscleIcon from "assets/muscle.png";
+
 import styles from "./style.module.scss";
+
+const iconWrapper = {
+  diet: dietIcon,
+  body: bodyshapeIcon,
+  muscle: muscleIcon
+};
 
 interface IProps {
   title: string;
@@ -23,22 +33,10 @@ const TitledContents: React.FC<IProps> = ({ title, contents, type }) => {
     loopFillGroupWithBlank: true,
     navigation: {
       nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    // renderPrevButton: () => (
-    //   <img
-    //     src={arrowIcon}
-    //     className={classNames("swiper-button-prev", styles.prev)}
-    //   />
-    // ),
-    // renderNextButton: () => (
-    //   <img
-    //     src={arrowIcon}
-    //     className={classNames("swiper-button-next", styles.next)}
-    //   />
-    // ),
+      prevEl: ".swiper-button-prev"
+    }
   };
-  console.log(youtubeThumbnail("https://www.youtube.com/watch?v=3VouSaW_LPw"));
+
   return (
     <Block
       direction={Direction.COLUMN}
@@ -53,9 +51,11 @@ const TitledContents: React.FC<IProps> = ({ title, contents, type }) => {
       </Block>
       <Block className={styles.section} sort={Sort.LEFT_CENTER}>
         <Swiper {...params}>
-          {contents.map((content) => {
+          {contents.map(content => {
+            const { link, title, training_purpose, ...others } = content;
+            const otherProps = Object.keys(others);
             return (
-              <a href={content.link} target="_blank">
+              <a href={link} target="_blank">
                 <Card className={styles.homeCard}>
                   {type === "video" && (
                     <img
@@ -64,8 +64,20 @@ const TitledContents: React.FC<IProps> = ({ title, contents, type }) => {
                     />
                   )}
                   <div className={styles.cardWrapper}>
-                    <p className={styles.homeCardTitle}>{content.title}</p>
-                    {content.content}
+                    <img
+                      src={
+                        iconWrapper[
+                          training_purpose as keyof typeof iconWrapper
+                        ]
+                      }
+                      className={styles.purposeIcon}
+                    />
+                    <p className={styles.homeCardTitle}>{title}</p>
+                    {otherProps.map((prop, index) => (
+                      <Badge
+                        className={styles.badge}
+                      >{`${prop}: ${others[prop]}`}</Badge>
+                    ))}
                   </div>
                 </Card>
               </a>
