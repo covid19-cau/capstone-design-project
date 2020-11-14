@@ -2,12 +2,13 @@ import React from "react";
 
 import NavBar from "components/client/organisms/navBar";
 import TitledContents from "components/client/organisms/TitledContents";
+import MainImageCard from "components/client/organisms/MainImageCard";
 
 const Home = () => {
   return (
     <div>
       <NavBar />
-
+      <MainImageCard />
       <TitledContents
         title="Videos"
         contents={[

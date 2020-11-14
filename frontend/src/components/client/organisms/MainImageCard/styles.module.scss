@@ -1,0 +1,30 @@
+.wrapper {
+  position: relative;
+}
+
+.text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  /* background: #FF9800; */
+  background-color: rgba(255, 126, 100, 0.6);
+  color: white;
+}
+
+.title {
+  font-size: 35px;
+  margin: 0;
+}
+
+.description {
+  font-size: 25px;
+}
+
+.button {
+  margin-top: 10px;
+  border: none;
+  width: 200px;
+  height: 42px;
+  box-shadow: 5px 8px 20px 0 rgba(0, 0, 0, 0.2);
+}
