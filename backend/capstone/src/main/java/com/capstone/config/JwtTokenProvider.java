@@ -1,5 +1,6 @@
 package com.capstone.config;
 
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
@@ -7,7 +8,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,6 +29,8 @@ public class JwtTokenProvider { // JWT token production and verification
     private long tokenValidTime = 30 * 60 * 1000L;
     
     private final UserDetailsService userDetailsService;
+    
+    private ArrayList<String> logoutList = new ArrayList<String>();
 
     // instance initialization, encoding secret key Base64
     @PostConstruct
@@ -72,10 +74,16 @@ public class JwtTokenProvider { // JWT token production and verification
     public boolean validateToken(String jwtToken) {
         try {
             Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken);
+            if(logoutList.contains(jwtToken))
+            	return false;
             return !claims.getBody().getExpiration().before(new Date());
         } catch (Exception e) {
             return false;
         }
     }
+
+	public void logoutToken(String token) {
+		logoutList.add(token);
+	}
  
 }

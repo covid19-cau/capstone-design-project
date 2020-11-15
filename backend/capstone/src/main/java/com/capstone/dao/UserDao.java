@@ -27,7 +27,8 @@ public class UserDao {
 	}
 	
 	public Member findByName(String name) {
-		return userRepo.findByName(name);
+		Optional<Member> user = Optional.of(userRepo.findByName(name));
+		return user.get();
 	}
 
 	public boolean deleteUser(int id) {

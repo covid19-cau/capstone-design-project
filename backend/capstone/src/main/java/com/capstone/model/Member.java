@@ -46,8 +46,14 @@ public class Member implements UserDetails {
 	@Column (nullable = false, length = 200)
 	private String password;
 	
+	@Column (nullable = true)
+	private Integer challengeId;
+	
 	@ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
+	
+	@Column (nullable = true)
+	private String goal;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

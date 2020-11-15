@@ -16,6 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.capstone.config.JwtTokenProvider;
 import com.capstone.dao.UserDao;
 import com.capstone.model.Member;
+import com.capstone.model.Token;
 
 @RestController
 @CrossOrigin()
@@ -46,7 +47,7 @@ public class RegisterController {
 	
 	@PostMapping("/login")
     public String login(@RequestBody Map<String,Object> loginSet) {
-        Member member = userDao.findByName((String)loginSet.get("id"));
+        Member member = userDao.findByName((String)loginSet.get("name"));
         if(member == null)
         	throw new IllegalArgumentException("There is unvalid id.");
         	
@@ -56,4 +57,17 @@ public class RegisterController {
         return jwtTokenProvider.createToken(member.getName(), member.getRoles());
     }
 	
+	@PostMapping("/logoutPlease")
+	public ResponseEntity<Member> logoutUser(@RequestBody Token token){
+		if(!jwtTokenProvider.validateToken(token.getToken()))
+			throw new IllegalArgumentException("There is unvalid user");
+		try {
+			if(jwtTokenProvider.validateToken(token.getToken())) {
+				jwtTokenProvider.logoutToken(token.getToken());
+			}
+			return ResponseEntity.ok().build();
+		} catch(Exception ex) {
+			return ResponseEntity.notFound().build();
+		}
+	}
 }
