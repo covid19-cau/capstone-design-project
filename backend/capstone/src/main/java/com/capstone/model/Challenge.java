@@ -11,46 +11,64 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "challenge", catalog = "data")
 public class Challenge {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column (updatable = false, nullable = false, columnDefinition = "INT(11)", unique = true)
-	private Long id;
+	@Column (updatable = true, nullable = false, columnDefinition = "INT(11)", unique = true)
+	private int id;
 	
 	@Column (nullable = false)
-	private Long member_id;
+	private int member_id;
+	
 	
 	
 	@Column (nullable = false)
-	@Enumerated(EnumType.STRING)
-	private Training_Purpose training_purpose;
+	//@Enumerated(EnumType.STRING)
+	private String goal;
 	
+	/*
 	private enum Training_Purpose{
 		Weightloss,
 		Muscleaugmentation,
 		Bodytypecorrection
 	}
+	*/
 	
 	@Column (nullable = false, length = 100)
-	private String challenge_goal;
+	private String detailedGoal;
 	
-	@Column (nullable = false, length = 100)
-	private String training_to_do;
 	
 	@Column (nullable = false)
-	private Date start_date;
+	private Date startDate;
 	
 	@Column (nullable = false)
-	private Date end_date;
+	private Date endDate;
+	
+	@Column (nullable = true)
+	private float percent = 0 ;
 	
 	@Column (nullable = false)
-	@Enumerated(EnumType.STRING)
-	private Certification_Day certification_day;
+	//@Enumerated(EnumType.STRING)
+	private Integer[] checkDate;
 	
+	private Integer remainDay;
+	
+	
+	@Column(nullable = true)
+	private boolean isCheckDay = false;
+	/*
 	private enum Certification_Day{
 		Mon, Tue, Wed, Thu, Fri, Sat, Sun
 	}
+	*/
 }

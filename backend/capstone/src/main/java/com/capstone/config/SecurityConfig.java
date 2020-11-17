@@ -42,8 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // not use session only token
 	                .and()
 	                .authorizeRequests() // use auth check
-	                // .antMatchers("/admin/**").hasRole("ADMIN")
-	                // .antMatchers("/user/**").hasRole("USER")
+	                .antMatchers("/admin/admin/**").hasRole("ADMIN")
+	                .antMatchers("/user/user/**").hasRole("USER")
 	                .anyRequest().permitAll() // other request for anybody
 	                .and()
 	                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
