@@ -1,8 +1,9 @@
 .section {
   margin-top: 10px;
   & .homeCard {
-    margin: 45px;
+    margin: 25px;
     & .homeCardTitle {
+      font-size: 16px;
       color: #ff7e64;
     }
     & .icon {
@@ -12,7 +13,7 @@
 }
 
 .content {
-  padding: 80px;
+  padding: 30px;
 }
 .title {
   margin-bottom: 20px;
@@ -44,5 +45,19 @@
 }
 
 .cardWrapper {
-  padding: 30px;
+  padding: 15px;
+}
+
+.badge {
+  border: 1px solid #efcfa1;
+  background-color: #fff7ea;
+  color: #ff9800;
+  margin-right: 5px;
+  font-size: 12px;
+}
+
+.purposeIcon {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 10px;
 }

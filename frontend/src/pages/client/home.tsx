@@ -2,59 +2,81 @@ import React from "react";
 
 import NavBar from "components/client/organisms/navBar";
 import TitledContents from "components/client/organisms/TitledContents";
+import MainImageCard from "components/client/organisms/MainImageCard";
 
 const Home = () => {
   return (
     <div>
       <NavBar />
-
+      <MainImageCard />
       <TitledContents
         title="Videos"
         contents={[
           {
             link: "https://www.youtube.com/watch?v=3VouSaW_LPw",
             title: "video",
-            content: "video content",
+            training_purpose: "body"
           },
           {
             link: "https://www.youtube.com/watch?v=VNQpP6C1fJg",
             title: "video2",
-            content: "video content 2",
+            training_purpose: "muscle"
           },
           {
             link: "https://www.youtube.com/watch?v=VVn5IUM8sms",
             title: "video3",
-            content: "video content 3",
+            training_purpose: "diet"
           },
           {
             link: "https://www.youtube.com/watch?v=1GruyO_L6Vo",
             title: "video4",
-            content: "video content 4",
+            training_purpose: "body"
           },
           {
             link: "https://www.youtube.com/watch?v=3VouSaW_LPw",
             title: "video5",
-            content: "video content 5",
+            training_purpose: "muscle"
           },
           {
             link: "https://www.youtube.com/watch?v=3VouSaW_LPw",
             title: "video6",
-            content: "video content 6",
-          },
+            training_purpose: "diet"
+          }
         ]}
         icon={""}
         type="video"
       />
       <TitledContents
         title="Meals"
-        contents={[{ link: "", title: "meal", content: "meal content" }]}
+        contents={[
+          {
+            title: "meal",
+            carbohydrate: "10g",
+            protein: "10g",
+            fat: "10g",
+            serving_size: "10g",
+            training_purpose: "body"
+          }
+        ]}
         icon={""}
       />
       <TitledContents
         title="Equipments"
         contents={[
-          { link: "", title: "equipment", content: "equipment content" },
-          { link: "", title: "equipment 2", content: "equipment content 2" },
+          {
+            title: "equipment",
+            price: "1000",
+            seller: "mike",
+            shipping_charge: "1000",
+            training_purpose: "body"
+          },
+          {
+            title: "equipment",
+            price: "1000",
+            seller: "me",
+            shipping_charge: "1000",
+            training_purpose: "muscle"
+          }
         ]}
         icon={""}
       />

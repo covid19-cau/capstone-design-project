@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import classNames from "classnames";
+import Cookies from "js-cookie";
 
 import List from "components/client/molecules/List";
 import Block, { Sort } from "components/client/molecules/Block";
@@ -48,7 +49,7 @@ const NavBar: React.FC<IProps> = ({ className }) => {
           <ListItem className={styles.login}>
             {" "}
             <NavLink to={"/signin"} exact>
-              Login
+              {Cookies.get("user-token") ? "Logout" : "Login"}
             </NavLink>
           </ListItem>
         </Block>
