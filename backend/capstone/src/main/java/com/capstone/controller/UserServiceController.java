@@ -1,7 +1,6 @@
 package com.capstone.controller;
 
 import java.text.ParseException;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone.config.JwtTokenProvider;
 import com.capstone.dao.UserDao;
+import com.capstone.exception.NotCheckDayException;
 import com.capstone.model.Challenge;
 import com.capstone.model.Member;
 import com.capstone.model.Token;
@@ -59,16 +59,17 @@ public class UserServiceController {
 		return model;
 	}
 	
-	@PostMapping("/user/applychallenge/{user_id}")
+	@PostMapping("/user/applychallenge/{member_id}")
 	public Challenge registerChallenge(@PathVariable int member_id, @RequestBody Challenge challenge){	
 		userService.setChallenge(member_id,challenge);
 		return userService.getChallengeByMemberId(member_id);
 	}
 	
-	@PostMapping("/user/checkchallenge/{challenge_id}")
-	public Challenge checkChallenge(@PathVariable int challenge_id, @RequestBody String checkDay) throws ParseException {
-		Challenge challenge = userService.getChallengeById(challenge_id);
-		userService.updateCheckDay(challenge_id, checkDay);
+	@PostMapping("/user/checkchallenge/{member_id}")
+	public Challenge checkChallenge(@PathVariable int member_id, @RequestBody String checkDay) throws ParseException {
+		int challenge_id = userService.getChallengeByMemberId(member_id).getId();
+		if(!userService.updateCheckDay(challenge_id, checkDay))
+			throw new NotCheckDayException("Not your challenge check day.");
 		
 		return userService.getChallengeById(challenge_id);
 	}

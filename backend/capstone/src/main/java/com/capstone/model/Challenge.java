@@ -24,7 +24,7 @@ public class Challenge {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column (updatable = false, nullable = false, columnDefinition = "INT(11)", unique = true)
+	@Column (updatable = true, nullable = false, columnDefinition = "INT(11)", unique = true)
 	private int id;
 	
 	@Column (nullable = false)

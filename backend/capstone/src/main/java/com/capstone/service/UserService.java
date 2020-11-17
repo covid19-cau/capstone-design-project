@@ -54,18 +54,14 @@ public class UserService {
 	}
 	
 	public boolean updateCheckDay(int challenge_id, String date) throws ParseException {
-		String day = "" ;
-	    String dateType = "yyyy-MM-dd";
-	    SimpleDateFormat dateFormat = new SimpleDateFormat(dateType) ;
-	    Date nDate = dateFormat.parse(date) ;
-	     
-	    Calendar cal = Calendar.getInstance() ;
-	    cal.setTime(nDate);
-	     
-	    int dayNum = cal.get(Calendar.DAY_OF_WEEK) ;
-	    if(!challengeDao.findChallengeById(challenge_id).isCheckDay()) {
+		
+		Challenge challenge = challengeDao.findChallengeById(challenge_id);
+		
+		if(!challenge.isCheckDay()) {
 	    	return false;
 	    }
+		int plusPercent = daysTrain(challenge.getStartDate(),challenge.getEndDate(), challenge.getCheckDate());
+		challenge.setPercent(challenge.getPercent()+100/plusPercent);
 	    return true;
 	}
 
@@ -84,4 +80,30 @@ public class UserService {
 		}
 		return challengeDao.findChallengeById(challenge_id);
 	}
+	
+	  private static boolean isTrainDay(Calendar cal, Integer[] trainDay) {
+           int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+           for(int i =0; i<trainDay.length;i++) {
+        	   if(dayOfWeek == trainDay[i])
+        		   return true;
+           }
+           return false;
+	  }
+	  
+	  private static int daysBetween(Date d1, Date d2){
+          return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+	  }
+	  
+	  private static int daysTrain(Date startDate, Date endDate, Integer[] trainDay) {
+		  Date nDate = startDate;
+		  int numberOfDaysCount = 0;
+		  Calendar cal = Calendar.getInstance();
+		  cal.setTime(nDate);
+		  for(int i=0;i<=daysBetween(startDate,endDate) ; i++ ) {
+	            if(isTrainDay(cal, trainDay))
+	                numberOfDaysCount++;
+	            cal.add(Calendar.MONTH, 1); // add one day
+	        }
+		  return numberOfDaysCount;
+	  }
 }
