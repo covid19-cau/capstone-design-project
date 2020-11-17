@@ -63,6 +63,7 @@ const RecommendManageTable: React.FC<IProps> = ({
   const onChange = (selectedRowKeys: any) => {
     setSelectedRowKeys(selectedRowKeys);
   };
+
   const onFinish = (values: any) => {
     if (isUpdate) {
       setIsUpdate(false);
@@ -87,7 +88,7 @@ const RecommendManageTable: React.FC<IProps> = ({
     selectedRowKeys,
     onChange,
   };
-  console.log(data.find((d: any) => d.key === selectedRowKeys[0]));
+
   return (
     <div>
       <Button

@@ -13,12 +13,17 @@
     "antd": "^4.6.5",
     "axios": "^0.20.0",
     "classnames": "^2.2.6",
+    "js-cookie": "^2.2.1",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-id-swiper": "^4.0.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "typescript": "~3.7.2"
+    "swiper": "^6.3.5",
+    "swr": "^0.3.8",
+    "typescript": "~3.7.2",
+    "youtube-thumbnail": "^1.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -43,6 +48,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.10",
+    "@types/js-cookie": "^2.2.6",
     "@types/react-router-dom": "^5.1.5"
   }
 }
