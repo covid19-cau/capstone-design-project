@@ -70,7 +70,6 @@ function ChallengeForm() {
     event.preventDefault();
   };
 
-  console.log(checkedList);
   const onChange = (list: any) => {
     setCheckedList(list);
     setIndeterminate(!!list.length && list.length < plainOptions.length);

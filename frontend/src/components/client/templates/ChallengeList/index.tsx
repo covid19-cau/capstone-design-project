@@ -1,5 +1,8 @@
 import React from "react";
 import { Progress, notification } from "antd";
+import { format } from "date-fns";
+import Cookies from "js-cookie";
+
 import {
   SmileOutlined,
   ExclamationCircleOutlined,
@@ -7,6 +10,8 @@ import {
   CarryOutOutlined,
   UserOutlined
 } from "@ant-design/icons";
+
+import * as clientApis from "apis/client";
 
 import Badge from "../../atoms/Badge";
 import Button from "../../atoms/Button";
@@ -26,12 +31,23 @@ function ChallengeList({
   goal,
   percent
 }: any) {
-  const openNotification = () => {
-    notification.open({
-      message: "Challenge date checked",
-      description: "Well done",
-      icon: <SmileOutlined style={{ color: "#ff7e64" }} />
-    });
+  const onCheck = () => {
+    const userid = Cookies.get("user-id") as string;
+    const date = format(new Date(), "yyyy-MM-dd");
+    async function check() {
+      const data = await clientApis.checkChallenge(userid, { date });
+      if (!data?.success) {
+        return alert("not success");
+      }
+
+      notification.open({
+        message: "Challenge date checked",
+        description: "Well done",
+        icon: <SmileOutlined style={{ color: "#ff7e64" }} />
+      });
+    }
+
+    check();
   };
 
   return (
@@ -62,9 +78,13 @@ function ChallengeList({
                   return <Badge>{dateMapper[date - 1]}</Badge>;
                 })}
               </div>
-              <Button theme="brand" onClick={openNotification}>
-                Check challenge
-              </Button>
+              {checkDay ? (
+                <Button theme="brand" onClick={onCheck}>
+                  Check challenge
+                </Button>
+              ) : (
+                <Badge>Today is not check day</Badge>
+              )}
             </div>
             <div className={styles.side}>
               <div className={styles.sideCard}>
