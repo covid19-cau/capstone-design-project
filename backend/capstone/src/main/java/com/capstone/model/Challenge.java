@@ -66,7 +66,7 @@ public class Challenge {
 	
 	private boolean todayCheck = false;
 	
-	@Column(nullable = true)
+  @Column(nullable = true)
 	private boolean isCheckDay = false;
 	/*
 	private enum Certification_Day{

@@ -1,7 +1,12 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import classNames from "classnames";
 import Cookies from "js-cookie";
+
+import { notification } from "antd";
+import { SmileOutlined } from "@ant-design/icons";
+
+import * as clientApis from "apis/client";
 
 import List from "components/client/molecules/List";
 import Block, { Sort } from "components/client/molecules/Block";
@@ -17,15 +22,33 @@ interface IProps {
   className?: string;
 }
 
+const openNotification = () => {
+  notification.open({
+    message: "SignOut Success",
+    description: "See you later!",
+    icon: <SmileOutlined style={{ color: "#ff7e64" }} />
+  });
+};
+
 const NavBar: React.FC<IProps> = ({ className }) => {
   const classProps = classNames(styles.default, className);
+  const userToken = Cookies.get("user-token");
+  const history = useHistory();
+
+  const onLogout = () => {
+    Cookies.remove("user-token");
+    Cookies.remove("user-id");
+    history.push("/");
+    openNotification();
+  };
+
   return (
     <nav className={classProps}>
       <List className={styles.wrapper}>
         <Block sort={Sort.SPACE_BETWEEN}>
           <p className={styles.logo}>🏋🏻</p>
           <Block className={styles.menus} sort={Sort.LEFT_CENTER}>
-            {routes.map((route) => {
+            {routes.map(route => {
               if (
                 route.title === "admin" ||
                 route.title === "Signin" ||
@@ -49,7 +72,9 @@ const NavBar: React.FC<IProps> = ({ className }) => {
           <ListItem className={styles.login}>
             {" "}
             <NavLink to={"/signin"} exact>
-              {Cookies.get("user-token") ? "Logout" : "Login"}
+              <div onClick={userToken ? onLogout : () => null}>
+                {userToken ? "Logout" : "Login"}
+              </div>
             </NavLink>
           </ListItem>
         </Block>

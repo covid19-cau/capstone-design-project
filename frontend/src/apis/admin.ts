@@ -13,7 +13,7 @@ export async function registerContents(category: dataColumn, data: any) {
 export async function deleteContents(category: dataColumn, data: any) {
   try {
     const response = await api.delete(`/admin/${category}/delete/${data.id}`);
-    console.log(response);
+
     return response.data;
   } catch (err) {
     console.error(err);
