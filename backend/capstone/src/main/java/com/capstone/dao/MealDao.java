@@ -45,8 +45,9 @@ public class MealDao {
 			target.setName(meal.getName());
 			target.setProtein(meal.getProtein());
 			target.setServing_size(meal.getServing_size());
-			target.setTraining_purpose(meal.getTraining_purpose());
+			target.setGoal(meal.getGoal());
 			mealRepo.save(target);
 	}
+
 
 }

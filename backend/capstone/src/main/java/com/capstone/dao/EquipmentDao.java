@@ -38,4 +38,6 @@ public class EquipmentDao {
 		equipmentRepo.save(target);
 	}
 
+	
+
 }

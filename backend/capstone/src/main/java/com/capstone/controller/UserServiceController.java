@@ -1,6 +1,7 @@
 package com.capstone.controller;
 
 import java.text.ParseException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
@@ -15,8 +16,11 @@ import com.capstone.config.JwtTokenProvider;
 import com.capstone.dao.UserDao;
 import com.capstone.exception.NotCheckDayException;
 import com.capstone.model.Challenge;
+import com.capstone.model.Equipment;
+import com.capstone.model.Meal;
 import com.capstone.model.Member;
 import com.capstone.model.Token;
+import com.capstone.model.Video;
 import com.capstone.service.CustomUserDetailService;
 import com.capstone.service.UserService;
 
@@ -36,9 +40,25 @@ public class UserServiceController {
 	@Autowired
 	JwtTokenProvider jwtTokenProvider;
 	
+	//추천컨텐츠
+	
+	@GetMapping("/user/{member_id}/video")
+	public List<Video> getVideoContents (@PathVariable int member_id) {
+		return userService.getVideoById(member_id);
+	}
+	
+	@GetMapping("/user/{member_id}/equipment")
+	public List<Equipment> getEquipmentContents (@PathVariable int member_id) {
+		return userService.getEquipmentById(member_id);
+	}
+	
+	@GetMapping("/user/{member_id}/meal")
+	public List<Meal> getMealContents (@PathVariable int member_id) {
+		return userService.getMealById(member_id);
+	}
 	
 	@GetMapping("/user/challengeList/{member_id}")
-	public Challenge getChallengeInfo (@PathVariable int member_id, @RequestBody String date) {
+	public Challenge getChallengeInfo (@PathVariable int member_id) {
 		if(!userService.hasChallenge(member_id)) {
 			throw new ContentsNotFoundException("No Challenge");
 		}
@@ -66,12 +86,17 @@ public class UserServiceController {
 	}
 	
 	@PostMapping("/user/checkchallenge/{member_id}")
-	public Challenge checkChallenge(@PathVariable int member_id, @RequestBody String checkDay) throws ParseException {
+	public Challenge checkChallenge(@PathVariable int member_id, @RequestBody String date) throws ParseException {
 		int challenge_id = userService.getChallengeByMemberId(member_id).getId();
-		if(!userService.updateCheckDay(challenge_id, checkDay))
+		if(!userService.updateCheckDay(challenge_id, date))
 			throw new NotCheckDayException("Not your challenge check day.");
 		
 		return userService.getChallengeById(challenge_id);
+	}
+	
+	@GetMapping("/user/getotherchallenge/{member-id}")
+	public List<Challenge> getOtherMemberChallenge(@PathVariable int member_id) {
+		return userService.getAllChallengeByGoal(userDao.findByID(member_id).getGoal());
 	}
 	
 }

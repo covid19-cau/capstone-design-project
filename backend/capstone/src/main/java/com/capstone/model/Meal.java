@@ -30,5 +30,5 @@ public class Meal {
 	
 	private String fat;
 	
-	private String training_purpose;
+	private String goal;
 }

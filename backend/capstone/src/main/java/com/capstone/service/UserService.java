@@ -1,17 +1,24 @@
 package com.capstone.service;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.capstone.dao.ChallengeDao;
+import com.capstone.dao.EquipmentDao;
+import com.capstone.dao.MealDao;
 import com.capstone.dao.UserDao;
+import com.capstone.dao.VideoDao;
 import com.capstone.model.Challenge;
+import com.capstone.model.Equipment;
+import com.capstone.model.Meal;
 import com.capstone.model.Member;
+import com.capstone.model.Video;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,6 +31,15 @@ public class UserService {
 	
 	@Autowired
 	ChallengeDao challengeDao;
+	
+	@Autowired
+	VideoDao videoDao;
+	
+	@Autowired
+	EquipmentDao equipmentDao;
+	
+	@Autowired
+	MealDao mealDao;
 	
 	Member user;
 	public Challenge getChallengeByMemberId(int member_id) {
@@ -106,4 +122,54 @@ public class UserService {
 	        }
 		  return numberOfDaysCount;
 	  }
+
+
+	
+	public List<Meal> getMealById(int member_id) {
+		// TODO Auto-generated method stub
+		String goal = userDao.findByID(member_id).getGoal();
+		List<Meal> mealData = mealDao.findAllMeal();
+		List<Meal> result = new ArrayList<Meal>();
+		for(Meal i: mealData) {
+			if(i.getGoal().equals(goal))
+				result.add(i);
+		}
+		return result;
+	}
+	
+	public List<Equipment> getEquipmentById(int member_id) {
+		// TODO Auto-generated method stub
+		String goal = userDao.findByID(member_id).getGoal();
+		List<Equipment> equipmentData = equipmentDao.findAllEquipment();
+		List<Equipment> result = new ArrayList<Equipment>();
+		for(Equipment i: equipmentData) {
+			if(i.getGoal().equals(goal))
+				result.add(i);
+		}
+		return result;
+	}
+	
+	public List<Video> getVideoById(int member_id) {
+		// TODO Auto-generated method stub
+		String goal = userDao.findByID(member_id).getGoal();
+		List<Video> videoData = videoDao.findAllVideo();
+		List<Video> result = new ArrayList<Video>();
+		for(Video i: videoData) {
+			if(i.getGoal().equals(goal))
+				result.add(i);
+		}
+		return result;
+	}
+
+
+	public List<Challenge> getAllChallengeByGoal(String goal) {
+		// TODO Auto-generated method stub
+		List<Challenge> challengeData = challengeDao.findAllChallenge();
+		List<Challenge> result = new ArrayList<Challenge>();
+		for(Challenge i : challengeData) {
+			if(i.getGoal().equals(goal))
+				result.add(i);
+		}
+		return result;
+	}
 }
