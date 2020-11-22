@@ -8,4 +8,5 @@ import com.capstone.model.Meal;
 @Repository
 public interface MealRepository extends JpaRepository<Meal, Integer>{
 
+	
 }

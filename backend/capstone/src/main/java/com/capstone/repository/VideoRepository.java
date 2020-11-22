@@ -8,4 +8,5 @@ import com.capstone.model.Video;
 @Repository
 public interface VideoRepository extends JpaRepository<Video, Integer>{
 
+
 }
