@@ -46,7 +46,20 @@ public class UserService {
 		Member member = userDao.findByID(member_id);
 		if(challengeDao.findChallengeById(member.getChallengeId()) == null)
 			return null;
-		return challengeDao.findChallengeById(member.getChallengeId());
+		Challenge challenge = challengeDao.findChallengeById(member.getChallengeId());
+		challenge.getCheckDate();
+		Date nowDay = new Date();
+		Calendar cal = Calendar.getInstance() ;
+	    cal.setTime(nowDay);
+	    cal.add(Calendar.DATE, 3);
+	    int dayNum = cal.get(Calendar.DAY_OF_WEEK) ;
+	    for(int i =0; i< challenge.getCheckDate().length;i++) {
+	    	if(dayNum == challenge.getCheckDate()[i] && !challenge.isTodayCheck()) {
+	    		challenge.setCheckDay(true);	
+	    		break;
+	    	}
+	    }
+	    return challenge;
 	}
 	
 
@@ -60,10 +73,11 @@ public class UserService {
 	public void setChallenge(int member_id, Challenge challenge) {
 		//setting remain day number
 		
-		
 		challengeDao.savechallenge(challenge);
 		Member member = userDao.findByID(member_id);
 		member.setChallengeId(challenge.getId());
+		member.setGoal(challenge.getGoal());
+		challenge.setRemainDay(daysTrain(challenge.getStartDate(),challenge.getEndDate(),challenge.getCheckDate()));
 		userDao.saveUser(member);
 		// TODO Auto-generated method stub
 		//user.setChallenge(challenge);
@@ -78,6 +92,10 @@ public class UserService {
 	    }
 		int plusPercent = daysTrain(challenge.getStartDate(),challenge.getEndDate(), challenge.getCheckDate());
 		challenge.setPercent(challenge.getPercent()+100/plusPercent);
+		challenge.setRemainDay(challenge.getRemainDay()-1);
+		challenge.setCheckDay(false);
+		challenge.setTodayCheck(true);
+		challengeDao.savechallenge(challenge);
 	    return true;
 	}
 
@@ -118,7 +136,7 @@ public class UserService {
 		  for(int i=0;i<=daysBetween(startDate,endDate) ; i++ ) {
 	            if(isTrainDay(cal, trainDay))
 	                numberOfDaysCount++;
-	            cal.add(Calendar.MONTH, 1); // add one day
+	            cal.add(Calendar.DATE, 1); // add one day
 	        }
 		  return numberOfDaysCount;
 	  }
