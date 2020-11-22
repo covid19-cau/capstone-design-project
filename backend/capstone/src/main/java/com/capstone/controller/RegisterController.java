@@ -2,6 +2,8 @@ package com.capstone.controller;
 
 import java.net.URI;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,16 +48,19 @@ public class RegisterController {
 	}
 	
 	@PostMapping("/login")
-    public String login(@RequestBody Map<String,Object> loginSet) {
+    public Map<String,Object> login(@RequestBody Map<String,Object> loginSet) {
         Member member = userDao.findByName((String)loginSet.get("name"));
+        Map<String,Object> result = new HashMap<String,Object>();
         if(member == null)
         	throw new IllegalArgumentException("There is unvalid id.");
         	
         if (!passwordEncoder.matches((String)loginSet.get("password"), member.getPassword())) {
             throw new IllegalArgumentException("There is unvalid password.");
         }
-        return jwtTokenProvider.createToken(member.getName(), member.getRoles());
-    }
+        result.put("token", jwtTokenProvider.createToken(member.getName(), member.getRoles()));
+        result.put("id", member.getId());
+        return result;
+	}
 	
 	@PostMapping("/logoutPlease")
 	public ResponseEntity<Member> logoutUser(@RequestBody Token token){

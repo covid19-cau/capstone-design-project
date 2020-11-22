@@ -40,7 +40,7 @@ public class Equipment {
 	@Column (length = 30)
 	private String seller;
 	
-	private String training_purpose;
+	private String goal;
 
 
 	public void update(Equipment equipment) {
@@ -49,7 +49,7 @@ public class Equipment {
 		url = equipment.getUrl();
 		shipping_charge = equipment.getShipping_charge();
 		seller = equipment.getSeller();
-		training_purpose = equipment.getTraining_purpose();
+		goal = equipment.getGoal();
 	}
 	
 	/*
