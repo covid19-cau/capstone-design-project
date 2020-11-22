@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 import * as clientApis from "apis/client";
 
@@ -12,7 +13,8 @@ function Challenge() {
 
   useEffect(() => {
     async function getChallengeInfo() {
-      const challengeInfo = await clientApis.getChallenge(20);
+      const userId = Cookies.get("user-id") as string;
+      const challengeInfo = await clientApis.getChallenge(userId);
       setChallenge(challengeInfo);
     }
     getChallengeInfo();

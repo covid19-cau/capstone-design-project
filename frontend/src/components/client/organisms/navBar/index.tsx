@@ -37,6 +37,7 @@ const NavBar: React.FC<IProps> = ({ className }) => {
 
   const onLogout = () => {
     Cookies.remove("user-token");
+    Cookies.remove("user-id");
     history.push("/");
     openNotification();
   };

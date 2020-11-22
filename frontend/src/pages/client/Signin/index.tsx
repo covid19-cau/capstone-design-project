@@ -35,7 +35,8 @@ function SignIn() {
       return;
     }
 
-    Cookies.set("user-token", data);
+    Cookies.set("user-token", data.token);
+    Cookies.set("user-id", data.id);
     openNotification();
     history.push("/");
   };

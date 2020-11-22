@@ -1,10 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+
+import * as clientApis from "apis/client";
 
 import NavBar from "components/client/organisms/navBar";
 import TitledContents from "components/client/organisms/TitledContents";
 import MainImageCard from "components/client/organisms/MainImageCard";
 
 const Home = () => {
+  const [videos, setVideos] = useState([]);
+  const [meals, setMeals] = useState([]);
+  const [equipments, setEquipments] = useState([]);
+
+  useEffect(() => {
+    const userId = Cookies.get("user-id") as string;
+    async function getVideo() {
+      const data = await clientApis.getContents(userId, "video");
+      setVideos(data.result);
+    }
+
+    async function getMeals() {
+      const data = await clientApis.getContents(userId, "meal");
+      setMeals(data.result);
+    }
+
+    async function getEquipment() {
+      const data = await clientApis.getContents(userId, "equipment");
+      setEquipments(data.result);
+    }
+
+    getMeals();
+    getEquipment();
+    getVideo();
+  }, []);
+
+  console.log(videos, meals, equipments);
   return (
     <div>
       <NavBar />

@@ -31,7 +31,14 @@ export async function signUp(data: any) {
   }
 }
 
-export async function getChallenge(id: number) {
+export async function getContents(id: string, category: string) {
+  try {
+    const response = await api.get(`/user/${id}/${category}`);
+    return response.data;
+  } catch (error) {}
+}
+
+export async function getChallenge(id: string) {
   try {
     const response = await api.get(`/user/challengeList/${id}`);
     return response.data;
