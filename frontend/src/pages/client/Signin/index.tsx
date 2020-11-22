@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { Redirect, useHistory } from "react-router-dom";
+import { notification } from "antd";
+import { SmileOutlined } from "@ant-design/icons";
 
 import * as clientApis from "apis/client";
 
@@ -9,8 +11,16 @@ import styles from "./styles.module.scss";
 import Button from "components/client/atoms/Button";
 import NavBar from "components/client/organisms/navBar";
 
+const openNotification = () => {
+  notification.open({
+    message: "SignIn Success",
+    description: "Hello!",
+    icon: <SmileOutlined style={{ color: "#ff7e64" }} />
+  });
+};
+
 function SignIn() {
-  const [id, setId] = useState<string>();
+  const [name, setName] = useState<string>();
   const [password, setPassword] = useState<string>();
   const history = useHistory();
 
@@ -19,13 +29,14 @@ function SignIn() {
   };
 
   const onLogin = async () => {
-    const data = await clientApis.signIn({ id, password });
+    const data = await clientApis.signIn({ name, password });
     if (!data) {
       alert("login info is not valid");
       return;
     }
 
     Cookies.set("user-token", data);
+    openNotification();
     history.push("/");
   };
 
@@ -40,13 +51,13 @@ function SignIn() {
         <div className={styles.content}>
           <p className={styles.title}>Login</p>
           <form onSubmit={handleFormSubmit}>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="name">name</label>
             <input
-              id="id"
+              id="name"
               type="id"
               placeholder="ID"
-              value={id}
-              onChange={(event) => setId(event.target.value)}
+              value={name}
+              onChange={event => setName(event.target.value)}
             />
             <label htmlFor="password">Password</label>
             <input
@@ -54,7 +65,7 @@ function SignIn() {
               type="password"
               placeholder="password"
               value={password}
-              onChange={(event) => setPassword(event.target.value)}
+              onChange={event => setPassword(event.target.value)}
             />
 
             <Button

@@ -13,10 +13,10 @@ import muscleIcon from "assets/muscle.png";
 
 import styles from "./style.module.scss";
 
-const iconWrapper = {
-  diet: dietIcon,
-  body: bodyshapeIcon,
-  muscle: muscleIcon
+export const iconWrapper = {
+  Diet: dietIcon,
+  Body: bodyshapeIcon,
+  Muscle: muscleIcon
 };
 
 interface IProps {

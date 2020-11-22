@@ -15,32 +15,32 @@ const Home = () => {
           {
             link: "https://www.youtube.com/watch?v=3VouSaW_LPw",
             title: "video",
-            training_purpose: "body"
+            training_purpose: "Body"
           },
           {
             link: "https://www.youtube.com/watch?v=VNQpP6C1fJg",
             title: "video2",
-            training_purpose: "muscle"
+            training_purpose: "Muscle"
           },
           {
             link: "https://www.youtube.com/watch?v=VVn5IUM8sms",
             title: "video3",
-            training_purpose: "diet"
+            training_purpose: "Diet"
           },
           {
             link: "https://www.youtube.com/watch?v=1GruyO_L6Vo",
             title: "video4",
-            training_purpose: "body"
+            training_purpose: "Body"
           },
           {
             link: "https://www.youtube.com/watch?v=3VouSaW_LPw",
             title: "video5",
-            training_purpose: "muscle"
+            training_purpose: "Muscle"
           },
           {
             link: "https://www.youtube.com/watch?v=3VouSaW_LPw",
             title: "video6",
-            training_purpose: "diet"
+            training_purpose: "Diet"
           }
         ]}
         icon={""}
@@ -55,7 +55,7 @@ const Home = () => {
             protein: "10g",
             fat: "10g",
             serving_size: "10g",
-            training_purpose: "body"
+            training_purpose: "Body"
           }
         ]}
         icon={""}
@@ -68,14 +68,14 @@ const Home = () => {
             price: "1000",
             seller: "mike",
             shipping_charge: "1000",
-            training_purpose: "body"
+            training_purpose: "Body"
           },
           {
             title: "equipment",
             price: "1000",
             seller: "me",
             shipping_charge: "1000",
-            training_purpose: "muscle"
+            training_purpose: "Muscle"
           }
         ]}
         icon={""}
