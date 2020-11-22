@@ -40,7 +40,7 @@ public class Video {
 	@Column(length = 30)
 	private String url;
 	
-	@Column(length = 30)
+	@Column(nullable = false, length = 30)
 	private String goal;
 	
 //	@Column (nullable = false)

@@ -35,11 +35,12 @@ public class Equipment {
 	private String url;
 	
 	@Column (length = 15, columnDefinition = "default 'free'") //배송비 없으면 free 출
-	private String shipping_charge;
+	private String shipping;
 	
 	@Column (length = 30)
 	private String seller;
 	
+	@Column (nullable = false)
 	private String goal;
 
 
@@ -47,7 +48,7 @@ public class Equipment {
 		name = equipment.getName();
 		price = equipment.getPrice();
 		url = equipment.getUrl();
-		shipping_charge = equipment.getShipping_charge();
+		shipping = equipment.getShipping();
 		seller = equipment.getSeller();
 		goal = equipment.getGoal();
 	}
