@@ -94,7 +94,7 @@ public class UserServiceController {
 		return userService.getChallengeById(challenge_id);
 	}
 	
-	@GetMapping("/user/getotherchallenge/{member-id}")
+	@GetMapping("/user/getotherchallenge/{member_id}")
 	public List<Challenge> getOtherMemberChallenge(@PathVariable int member_id) {
 		return userService.getAllChallengeByGoal(userDao.findByID(member_id).getGoal());
 	}
