@@ -40,6 +40,9 @@ public class Video {
 	@Column(length = 30)
 	private String url;
 	
+	@Column (nullable = false)
+	private String goal;
+	
 //	@Column (nullable = false)
 //	@Enumerated(EnumType.STRING)
 //	private Training_Purpose training_purpose;

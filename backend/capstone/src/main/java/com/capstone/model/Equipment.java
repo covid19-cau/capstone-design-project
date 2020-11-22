@@ -35,21 +35,22 @@ public class Equipment {
 	private String url;
 	
 	@Column (length = 15, columnDefinition = "default 'free'") //배송비 없으면 free 출
-	private String shipping_charge;
+	private String shipping;
 	
 	@Column (length = 30)
 	private String seller;
 	
-	private String training_purpose;
+	@Column (nullable = false)
+	private String goal;
 
 
 	public void update(Equipment equipment) {
 		name = equipment.getName();
 		price = equipment.getPrice();
 		url = equipment.getUrl();
-		shipping_charge = equipment.getShipping_charge();
+		shipping = equipment.getShipping();
 		seller = equipment.getSeller();
-		training_purpose = equipment.getTraining_purpose();
+		goal = equipment.getGoal();
 	}
 	
 	/*
