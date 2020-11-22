@@ -1,6 +1,7 @@
 package com.capstone.model;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -63,6 +64,7 @@ public class Challenge {
 	
 	private Integer remainDay;
 	
+	private boolean todayCheck = false;
 	
 	@Column(nullable = true)
 	private boolean isCheckDay = false;
