@@ -57,21 +57,24 @@ public class RegisterController {
         Member member = userDao.findByName((String)loginSet.get("name"));
         Map<String,Object> result = new HashMap<String,Object>();
         Date date = new Date();
+        Challenge challenge = new Challenge();
         if(member == null)
         	throw new IllegalArgumentException("There is unvalid id.");
         	
         if (!passwordEncoder.matches((String)loginSet.get("password"), member.getPassword())) {
             throw new IllegalArgumentException("There is unvalid password.");
         }
-        Challenge challenge = challengeDao.findChallengeById(member.getChallengeId());
         if(member.getLastLogin() == null)
         	member.setLastLogin(date);
-        if(member.getLastLogin().getDate() != date.getDate() ) {
-        	challenge.setTodayCheck(false);	
-        }
-        member.setLastLogin(date);
-        userDao.saveUser(member);
-    	challengeDao.savechallenge(challenge);   
+        if(member.getChallengeId() != null) {
+            challenge = challengeDao.findChallengeById(member.getChallengeId());
+            if(member.getLastLogin().getDate() != date.getDate() ) {
+            	challenge.setTodayCheck(false);	
+            }
+            member.setLastLogin(date);
+            userDao.saveUser(member);
+        	challengeDao.savechallenge(challenge);
+        }  
     	result.put("token", jwtTokenProvider.createToken(member.getName(), member.getRoles()));
         result.put("id", member.getId());
         return result;

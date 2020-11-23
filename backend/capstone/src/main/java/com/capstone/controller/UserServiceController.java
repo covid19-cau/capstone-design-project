@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone.config.JwtTokenProvider;
+import com.capstone.dao.ChallengeDao;
 import com.capstone.dao.UserDao;
 import com.capstone.exception.NotCheckDayException;
 import com.capstone.model.Challenge;
@@ -99,4 +100,10 @@ public class UserServiceController {
 		return userService.getAllChallengeByGoal(userDao.findByID(member_id).getGoal());
 	}
 	
+	@Autowired
+	ChallengeDao challengeDao;
+	@GetMapping("/user/challenge/{challenge_id}")
+	public Challenge getChallenge(@PathVariable int challenge_id) {
+		return challengeDao.findChallengeById(challenge_id); 
+	}
 }
