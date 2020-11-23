@@ -2,8 +2,8 @@ package com.capstone.controller;
 
 import java.net.URI;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.capstone.config.JwtTokenProvider;
+import com.capstone.dao.ChallengeDao;
 import com.capstone.dao.UserDao;
+import com.capstone.model.Challenge;
 import com.capstone.model.Member;
 import com.capstone.model.Token;
 
@@ -26,6 +28,9 @@ public class RegisterController {
 	
 	@Autowired
 	UserDao userDao;
+	
+	@Autowired
+	ChallengeDao challengeDao;
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -51,13 +56,23 @@ public class RegisterController {
     public Map<String,Object> login(@RequestBody Map<String,Object> loginSet) {
         Member member = userDao.findByName((String)loginSet.get("name"));
         Map<String,Object> result = new HashMap<String,Object>();
+        Date date = new Date();
         if(member == null)
         	throw new IllegalArgumentException("There is unvalid id.");
         	
         if (!passwordEncoder.matches((String)loginSet.get("password"), member.getPassword())) {
             throw new IllegalArgumentException("There is unvalid password.");
         }
-        result.put("token", jwtTokenProvider.createToken(member.getName(), member.getRoles()));
+        Challenge challenge = challengeDao.findChallengeById(member.getChallengeId());
+        if(member.getLastLogin() == null)
+        	member.setLastLogin(date);
+        if(member.getLastLogin().getDate() != date.getDate() ) {
+        	challenge.setTodayCheck(false);	
+        }
+        member.setLastLogin(date);
+        userDao.saveUser(member);
+    	challengeDao.savechallenge(challenge);   
+    	result.put("token", jwtTokenProvider.createToken(member.getName(), member.getRoles()));
         result.put("id", member.getId());
         return result;
 	}

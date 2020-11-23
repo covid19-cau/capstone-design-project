@@ -32,18 +32,6 @@ public class ChallengeDao {
 	
 	public Challenge findChallengeById(int challenge_id) {
 		Challenge challenge = challengeRepo.findById(challenge_id).get();
-		challenge.getCheckDate();
-		Date nowDay = new Date();
-		Calendar cal = Calendar.getInstance() ;
-	    cal.setTime(nowDay);
-	    cal.add(Calendar.DATE, 3);
-	    int dayNum = cal.get(Calendar.DAY_OF_WEEK) ;
-	    for(int i =0; i< challenge.getCheckDate().length;i++) {
-	    	if(dayNum == challenge.getCheckDate()[i]) {
-	    		challenge.setCheckDay(true);
-	    		break;
-	    	}
-	    }
 		return challenge;
 	}
 	

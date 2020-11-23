@@ -2,6 +2,7 @@ package com.capstone.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,6 +55,8 @@ public class Member implements UserDetails {
 	
 	@Column (nullable = true)
 	private String goal;
+	
+	private Date lastLogin;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

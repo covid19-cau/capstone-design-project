@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+import { notification } from "antd";
+import { SmileOutlined } from "@ant-design/icons";
+
 import * as clientApis from "apis/client";
 import { Redirect, useHistory } from "react-router-dom";
 
@@ -7,6 +10,14 @@ import Button from "components/client/atoms/Button";
 import NavBar from "components/client/organisms/navBar";
 
 import styles from "./styles.module.scss";
+
+const openNotification = () => {
+  notification.open({
+    message: "SignUp Success",
+    description: "Nice to meet you",
+    icon: <SmileOutlined style={{ color: "#ff7e64" }} />
+  });
+};
 
 function SignUp() {
   const [name, setName] = useState("");
@@ -28,7 +39,8 @@ function SignUp() {
       return;
     }
 
-    alert("signup success");
+    openNotification();
+
     history.push("/");
   };
 
@@ -47,7 +59,7 @@ function SignUp() {
                 type="text"
                 placeholder="Type your name"
                 value={name}
-                onChange={(event) => setName(event.target.value)}
+                onChange={event => setName(event.target.value)}
               />
             </label>
             <br />
@@ -59,7 +71,7 @@ function SignUp() {
                 type="email"
                 placeholder="Type your name"
                 value={email}
-                onChange={(event) => setEmail(event.target.value)}
+                onChange={event => setEmail(event.target.value)}
               />
             </label>
             <br />
@@ -71,7 +83,7 @@ function SignUp() {
                 type="password"
                 placeholder="type password"
                 value={password}
-                onChange={(event) => setPassword(event.target.value)}
+                onChange={event => setPassword(event.target.value)}
               />
             </label>
             <br />
@@ -83,7 +95,7 @@ function SignUp() {
                 type="password"
                 placeholder="password check"
                 value={repeatedPassword}
-                onChange={(event) => setRepeatedPassword(event.target.value)}
+                onChange={event => setRepeatedPassword(event.target.value)}
               />
             </label>
             <br />
@@ -96,7 +108,8 @@ function SignUp() {
                   name="goal"
                   id="diet"
                   type="radio"
-                  onChange={(event) => setGoal(event.target.value)}
+                  value="Diet"
+                  onChange={event => setGoal(event.target.value)}
                 />
                 <label htmlFor="diet">Diet</label>
                 <input
@@ -104,7 +117,8 @@ function SignUp() {
                   name="goal"
                   id="muscle"
                   type="radio"
-                  onChange={(event) => setGoal(event.target.value)}
+                  value="Muscle"
+                  onChange={event => setGoal(event.target.value)}
                 />
                 <label htmlFor="muscle">Muscle</label>
                 <input
@@ -112,7 +126,8 @@ function SignUp() {
                   name="goal"
                   id="body-shape"
                   type="radio"
-                  onChange={(event) => setGoal(event.target.value)}
+                  value="Body"
+                  onChange={event => setGoal(event.target.value)}
                 />
                 <label htmlFor="body-shape">Body-shape</label>
               </div>

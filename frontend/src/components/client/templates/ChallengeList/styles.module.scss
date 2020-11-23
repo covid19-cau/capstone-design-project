@@ -1,0 +1,89 @@
+.header {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px 0px;
+  & > h1 {
+    font-size: 36px;
+  }
+}
+
+.leftTitle {
+  display: inline;
+  margin-left: 6px;
+}
+
+.content {
+  width: 480px;
+  padding: 30px;
+}
+
+.side {
+  width: 400px;
+  right: 180px;
+  top: 0;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: 150px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
+}
+
+.image {
+  height: 360px;
+}
+
+.border {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: solid 1px #efefef;
+  margin-bottom: 30px;
+}
+
+.title {
+  margin-bottom: 15px;
+}
+
+.date {
+  display: flex;
+  margin-bottom: 40px;
+  & > div:first-child {
+    margin-right: 30px;
+  }
+  p {
+    font-size: 14px;
+  }
+}
+.due {
+  font-weight: bold;
+  color: #ff7e64;
+}
+
+.status {
+  margin-bottom: 45px;
+}
+
+.percent {
+}
+
+.sideCard {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+
+  input {
+    border: none;
+    border-bottom: 1px solid #979797;
+    width: 100%;
+  }
+}
+
+.purposeIcon {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 10px;
+}
