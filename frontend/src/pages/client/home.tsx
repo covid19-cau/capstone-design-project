@@ -20,9 +20,10 @@ const Home = () => {
   const [videos, setVideos] = useState([]);
   const [meals, setMeals] = useState([]);
   const [equipments, setEquipments] = useState([]);
+  const [otherChallenges, setOtherChallenges] = useState([]);
 
   useEffect(() => {
-    const userId = Cookies.get("user-id") as string;
+    const userId = Cookies.get("user-id") || "1";
     async function getVideo() {
       const data = await clientApis.getContents(userId, "video");
       setVideos(data);
@@ -38,16 +39,31 @@ const Home = () => {
       setEquipments(data);
     }
 
+    async function getOtherChallenges() {
+      const data = await clientApis.getOtherChallenge(userId);
+      setOtherChallenges(data);
+    }
+
     getMeals();
     getEquipment();
     getVideo();
+    getOtherChallenges();
   }, []);
-
+  console.log(otherChallenges);
   return (
     <div>
       <NavBar />
       <MainImageCard />
-
+      {otherChallenges?.length === 0 ? (
+        <SkeletonComponent />
+      ) : (
+        <TitledContents
+          title="Challenges"
+          contents={otherChallenges}
+          type="challenge"
+          icon=""
+        />
+      )}
       {videos?.length === 0 ? (
         <SkeletonComponent />
       ) : (

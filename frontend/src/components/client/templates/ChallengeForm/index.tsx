@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Checkbox, notification } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
+import Cookies from "js-cookie";
 
 import { Redirect, useHistory } from "react-router-dom";
 
@@ -41,7 +42,7 @@ function ChallengeForm() {
   const history = useHistory();
 
   const onSubmit = () => {
-    const member_id = 20;
+    const member_id = Cookies.get("user-id");
     const mappedCheckDate = mapIndexWithDate(checkedList);
 
     async function register() {

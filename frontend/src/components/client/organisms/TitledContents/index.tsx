@@ -3,6 +3,7 @@ import Swiper from "react-id-swiper";
 import youtubeThumbnail from "youtube-thumbnail";
 // @ts-ignore
 import { ReactTinyLink } from "react-tiny-link";
+import { Progress } from "antd";
 
 import Block, { Sort, Direction } from "components/client/molecules/Block";
 import Button from "components/client/atoms/Button";
@@ -61,6 +62,16 @@ const TitledContents: React.FC<IProps> = ({ title, contents, type }) => {
               url,
               title,
               training_purpose,
+              startDate,
+              endDate,
+              percent,
+              checkDate,
+              remainDay,
+              checkDay,
+              todayCheck,
+              member_id,
+              goal,
+              detailedGoal,
               ...others
             } = content;
             const otherProps = Object.keys(others);
@@ -91,12 +102,31 @@ const TitledContents: React.FC<IProps> = ({ title, contents, type }) => {
                       className={styles.purposeIcon}
                     />
                     <p className={styles.homeCardTitle}>{title}</p>
-                    <h4>{name}</h4>
+                    <h4>{type === "challenge" ? detailedGoal : name}</h4>
+                    {remainDay > 0 && (
+                      <Progress
+                        type="circle"
+                        percent={remainDay}
+                        strokeColor="#ff7e64"
+                        format={remainDay => `${remainDay} Days`}
+                      />
+                    )}
+                    <br />
                     {otherProps.map((prop, index) => (
                       <Badge
                         className={styles.badge}
                       >{`${prop}: ${others[prop]}`}</Badge>
                     ))}
+                    {type === "challenge" && (
+                      <div>
+                        <Progress
+                          percent={percent}
+                          size="small"
+                          status="active"
+                          strokeColor="#ff7e64"
+                        />
+                      </div>
+                    )}
                   </div>
                 </Card>
               </a>

@@ -45,6 +45,13 @@ export async function getChallenge(id: string) {
   } catch (error) {}
 }
 
+export async function getOtherChallenge(id: string) {
+  try {
+    const response = await api.get(`/user/getotherchallenge/${id}`);
+    return response.data;
+  } catch (error) {}
+}
+
 export async function registerChallenge({ member_id, ...data }: any) {
   try {
     await api.post(`/user/applychallenge/${member_id}`, { ...data, member_id });

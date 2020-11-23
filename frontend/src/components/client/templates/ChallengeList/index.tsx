@@ -1,6 +1,6 @@
 import React from "react";
 import { Progress, notification } from "antd";
-import { format } from "date-fns";
+import { format, differenceInCalendarDays } from "date-fns";
 import Cookies from "js-cookie";
 
 import {
@@ -49,6 +49,7 @@ function ChallengeList({
 
     check();
   };
+  console.log(startDate);
 
   return (
     <>
@@ -91,11 +92,11 @@ function ChallengeList({
                 <div className={styles.date}>
                   <div>
                     <h3 className={styles.title}>Start Date</h3>
-                    <p>{startDate}</p>
+                    <p>{format(new Date(startDate), "yyyy-MM-dd")}</p>
                   </div>
                   <div>
                     <h3 className={styles.title}>End Date</h3>
-                    <p>{endDate}</p>
+                    <p>{format(new Date(endDate), "yyyy-MM-dd")}</p>
                   </div>
                 </div>
                 <div className={styles.status}>
@@ -104,14 +105,24 @@ function ChallengeList({
                   <p>
                     {true && (
                       <>
-                        <b className={styles.due}>D - 1</b>
+                        <b className={styles.due}>
+                          D -{" "}
+                          {differenceInCalendarDays(
+                            new Date(endDate),
+                            new Date()
+                          )}
+                        </b>
                       </>
                     )}
                   </p>
                 </div>
                 <div className={styles.percent}>
                   <h5>Progress</h5>
-                  <Progress type="circle" percent={75} strokeColor="#ff7e64" />
+                  <Progress
+                    type="circle"
+                    percent={percent}
+                    strokeColor="#ff7e64"
+                  />
                 </div>
               </div>
             </div>
