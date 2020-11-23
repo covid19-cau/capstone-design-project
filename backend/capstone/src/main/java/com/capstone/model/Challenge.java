@@ -60,7 +60,7 @@ public class Challenge {
 	
 	@Column (nullable = false)
 	//@Enumerated(EnumType.STRING)
-	private Integer[] checkDate;
+	private Integer[] checkDate = null;
 	
 	private Integer remainDay;
 	
