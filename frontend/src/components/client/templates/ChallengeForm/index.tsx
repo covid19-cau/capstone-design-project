@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Checkbox, notification } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 import Cookies from "js-cookie";
@@ -40,6 +40,13 @@ function ChallengeForm() {
   const [checkAll, setCheckAll] = useState(false);
 
   const history = useHistory();
+
+  useEffect(() => {
+    const userToken = Cookies.get("user-token");
+    if (!userToken) {
+      history.push("/signin");
+    }
+  }, []);
 
   const onSubmit = () => {
     const member_id = Cookies.get("user-id");
@@ -85,7 +92,7 @@ function ChallengeForm() {
   console.log(startDate, endDate);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} data-cy="challenge-list">
       <div className={styles.content}>
         <p className={styles.title}>Challenge Register</p>
         <form onSubmit={handleFormSubmit}>

@@ -1,3 +1,5 @@
+@import "../../../../styles/utils.scss";
+
 .header {
   display: flex;
   justify-content: center;
@@ -9,6 +11,12 @@
   }
 }
 
+.contentWrapper {
+  @include media("<=tablet") {
+    flex-direction: column;
+  }
+}
+
 .leftTitle {
   display: inline;
   margin-left: 6px;
@@ -17,6 +25,9 @@
 .content {
   width: 480px;
   padding: 30px;
+  @include media("<=tablet") {
+    width: 100%;
+  }
 }
 
 .side {
@@ -31,6 +42,9 @@
   position: relative;
   margin: 150px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
+  @include media("<=tablet") {
+    margin: 10px;
+  }
 }
 
 .image {

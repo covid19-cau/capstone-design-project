@@ -1,7 +1,10 @@
+@import "../../../../styles/utils.scss";
+
 .section {
   margin-top: 10px;
   & .homeCard {
     margin: 25px;
+
     & .homeCardTitle {
       font-size: 16px;
       color: #ff7e64;

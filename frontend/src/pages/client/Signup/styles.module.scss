@@ -1,3 +1,5 @@
+@import "../../../styles/utils.scss";
+
 .wrapper {
   background-color: #ececec;
   display: flex;
@@ -50,6 +52,9 @@
   width: 600px;
   background-color: white;
   padding: 50px;
+  @include media("<=tablet") {
+    width: 100%;
+  }
 }
 
 .title {

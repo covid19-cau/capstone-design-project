@@ -1,0 +1,8 @@
+@import "~include-media/dist/_include-media";
+
+$breakpoints: (
+  smallPhone: 320px,
+  phone: 768px,
+  tablet: 1024px,
+  desktop: 1440px
+);

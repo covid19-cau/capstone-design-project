@@ -1,5 +1,10 @@
+@import "../../../../styles/utils.scss";
+
 .wrapper {
   position: relative;
+  @include media("<=tablet") {
+    height: 200px;
+  }
 }
 
 .text {
@@ -15,10 +20,16 @@
 .title {
   font-size: 35px;
   margin: 0;
+  @include media("<=tablet") {
+    font-size: 20px;
+  }
 }
 
 .description {
   font-size: 25px;
+  @include media("<=tablet") {
+    font-size: 15px;
+  }
 }
 
 .button {
@@ -27,4 +38,7 @@
   width: 200px;
   height: 42px;
   box-shadow: 5px 8px 20px 0 rgba(0, 0, 0, 0.2);
+  @include media("<=tablet") {
+    width: 200px;
+  }
 }

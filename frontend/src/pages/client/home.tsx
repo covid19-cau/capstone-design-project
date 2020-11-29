@@ -57,41 +57,49 @@ const Home = () => {
       {otherChallenges?.length === 0 ? (
         <SkeletonComponent />
       ) : (
-        <TitledContents
-          title="Challenges"
-          contents={otherChallenges}
-          type="challenge"
-          icon=""
-        />
+        <div data-cy="challenge">
+          <TitledContents
+            title="Challenges"
+            contents={otherChallenges}
+            type="challenge"
+            icon=""
+          />
+        </div>
       )}
       {videos?.length === 0 ? (
         <SkeletonComponent />
       ) : (
-        <TitledContents
-          title="Videos"
-          contents={videos}
-          icon={""}
-          type="video"
-        />
+        <div data-cy="video">
+          <TitledContents
+            title="Videos"
+            contents={videos}
+            icon={""}
+            type="video"
+          />
+        </div>
       )}
       {meals?.length === 0 ? (
         <div style={{ padding: "30px" }}>
           <Skeleton avatar paragraph={{ rows: 4 }} />
         </div>
       ) : (
-        <TitledContents title="Meals" contents={meals} icon={""} />
+        <div data-cy="meal">
+          <TitledContents title="Meals" contents={meals} icon={""} />
+        </div>
       )}
       {equipments?.length === 0 ? (
         <div style={{ padding: "30px" }}>
           <Skeleton avatar paragraph={{ rows: 4 }} />
         </div>
       ) : (
-        <TitledContents
-          title="Equipments"
-          contents={equipments}
-          icon={""}
-          type="equipment"
-        />
+        <div data-cy="equipment">
+          <TitledContents
+            title="Equipments"
+            contents={equipments}
+            icon={""}
+            type="equipment"
+          />
+        </div>
       )}
     </div>
   );

@@ -33,6 +33,16 @@ const TitledContents: React.FC<IProps> = ({ title, contents, type }) => {
   const params = {
     slidesPerView: 3,
     slidesPerGroup: 3,
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        slidesPerGroup: 1
+      },
+      786: {
+        slidesPerView: 3,
+        slidesPerGroup: 3
+      }
+    },
     loopFillGroupWithBlank: true,
     navigation: {
       nextEl: ".swiper-button-next",
@@ -77,7 +87,7 @@ const TitledContents: React.FC<IProps> = ({ title, contents, type }) => {
             const otherProps = Object.keys(others);
 
             return (
-              <a href={link} target="_blank">
+              <a href={url} target="_blank">
                 <Card className={styles.homeCard}>
                   {url && type === "video" && (
                     <img

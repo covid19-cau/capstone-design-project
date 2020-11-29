@@ -53,11 +53,11 @@ function ChallengeList({
 
   return (
     <>
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper} data-cy="challenge-list">
         <Block direction={Direction.COLUMN}>
           <UserOutlined />
           <h2>User's Challenge Info</h2>
-          <Block sort={Sort.CENTER_TOP}>
+          <Block sort={Sort.CENTER_TOP} className={styles.contentWrapper}>
             <div className={styles.content}>
               <img
                 src={iconWrapper[goal as keyof typeof iconWrapper]}

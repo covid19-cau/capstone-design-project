@@ -58,6 +58,7 @@ function SignIn() {
               type="id"
               placeholder="ID"
               value={name}
+              data-cy="name"
               onChange={event => setName(event.target.value)}
             />
             <label htmlFor="password">Password</label>
@@ -65,18 +66,20 @@ function SignIn() {
               id="password"
               type="password"
               placeholder="password"
+              data-cy="password"
               value={password}
               onChange={event => setPassword(event.target.value)}
             />
-
-            <Button
-              style={{ width: "100%" }}
-              size="medium"
-              theme="brand"
-              onClick={onLogin}
-            >
-              Login
-            </Button>
+            <div data-cy="button">
+              <Button
+                style={{ width: "100%" }}
+                size="medium"
+                theme="brand"
+                onClick={onLogin}
+              >
+                Login
+              </Button>
+            </div>
 
             <hr className={styles.bar} />
             <p className={styles.noUser}>you are not a member?</p>
